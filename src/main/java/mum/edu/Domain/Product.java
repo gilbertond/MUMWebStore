@@ -1,22 +1,29 @@
 package mum.edu.Domain;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
  * Created by Hatake on 8/11/2017.
  */
 @Entity
-public class Product {
+@Table(name = "product")
+public class Product implements Serializable{
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
+    @Column(name = "productName")
     private String productName;
     @ManyToOne
     @JoinColumn(name = "categoryId")
     private ProductCategory category;
+    @Column(name = "cost")
     private Double cost;
+    @Column(name = "quantityAvailable")
     private Integer quantityAvailable;
+    @Lob
     private byte[] image;
+    @Column(name = "description")
     private String description;
 
     public Product() {
