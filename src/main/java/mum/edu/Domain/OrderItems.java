@@ -1,14 +1,17 @@
 package mum.edu.Domain;
 
+import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 /**
  * Created by Hatake on 8/11/2017.
  */
 @Entity
-public class OrderItems {
+@Table(name = "orderItems")
+public class OrderItems implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderItemId;
     @ManyToOne
     @JoinColumn(name = "orderId")
@@ -16,7 +19,17 @@ public class OrderItems {
     @OneToOne
     @JoinColumn(name = "productId")
     private Product product;
+    @Column(name = "quantity")
     private Integer quantity;
+
+    public OrderItems() {
+    }
+
+    public OrderItems(Order order, Product product, Integer quantity) {
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+    }
 
     public Long getOrderItemId() {
         return orderItemId;
@@ -48,5 +61,44 @@ public class OrderItems {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + Objects.hashCode(this.orderItemId);
+        hash = 31 * hash + Objects.hashCode(this.order);
+        hash = 31 * hash + Objects.hashCode(this.product);
+        hash = 31 * hash + Objects.hashCode(this.quantity);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final OrderItems other = (OrderItems) obj;
+        if (!Objects.equals(this.orderItemId, other.getOrderItemId())) {
+            return false;
+        }
+        if (!Objects.equals(this.order, other.getOrder())) {
+            return false;
+        }
+        if (!Objects.equals(this.product, other.getProduct())) {
+            return false;
+        }
+        if (!Objects.equals(this.quantity, other.getQuantity())) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItems{" + "order=" + order.getOrderNumber() + ", product=" + product + ", quantity=" + quantity + '}';
     }
 }

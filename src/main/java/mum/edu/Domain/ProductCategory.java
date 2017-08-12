@@ -8,6 +8,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GenerationType;
@@ -18,7 +19,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "productCategory")
-public class ProductCategory implements Serializable{
+public class ProductCategory implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
@@ -38,8 +40,8 @@ public class ProductCategory implements Serializable{
         this.categoryName = categoryName;
         this.description = description;
         this.products = new ArrayList<>();
-    }    
-    
+    }
+
     public Long getCategoryId() {
         return categoryId;
     }
@@ -71,8 +73,43 @@ public class ProductCategory implements Serializable{
     public void addProducts(List<Product> products) {
         this.products.addAll(products);
     }
-    
+
     public void addProduct(Product product) {
         this.products.add(product);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 17;
+        hash = 31 * hash + Objects.hashCode(this.categoryId);
+        hash = 31 * hash + Objects.hashCode(this.categoryName);
+        hash = 31 * hash + Objects.hashCode(this.description);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ProductCategory other = (ProductCategory) obj;
+        if (!Objects.equals(this.categoryId, other.getCategoryId())) {
+            return false;
+        }
+        if (!Objects.equals(this.categoryName, other.getCategoryName())) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.getDescription())) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductCategory{" + "categoryId=" + categoryId + ", categoryName=" + categoryName + ", description=" + description + ", products=" + products.size() + '}';
     }
 }
