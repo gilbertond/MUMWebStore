@@ -13,10 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author 985939
  */
 @Controller
-@RequestMapping(value = "/user")
 public class UserController {
-    @RequestMapping()
-    public String getMain(){
-        return "/login";
-    }
+//    @RequestMapping(value = "/login")
+//    public String getHome(){
+//        return "/login";
+//    }
+    
+//    @RequestMapping(value = "user")
+//    public String getMain(){
+//        return "/catagory";
+//    }
+    
+//    @RequestMapping(value = "/user")
+//    public String getLogin(){
+//        return "/main";
+//    }
 }

@@ -55,6 +55,10 @@ public class UserDetail implements Serializable {
         this.addresses = new ArrayList<>();
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
     public Long getUserId() {
         return userId;
     }

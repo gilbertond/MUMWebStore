@@ -5,6 +5,7 @@
  */
 package edu.mum.authentication;
 
+import edu.mum.domain.Role;
 import edu.mum.domain.UserDetail;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,9 +21,9 @@ import org.springframework.util.StringUtils;
  */
 public class UserAccountTemplate extends UserDetail implements UserDetails {
 
-    private final List<String> userroles;
+    private final List<Role> userroles;
     
-    public UserAccountTemplate(UserDetail userDetail, List<String> roles){
+    public UserAccountTemplate(UserDetail userDetail, List<Role> roles){
         super(userDetail);
         this.userroles = new ArrayList<>();
         this.userroles.addAll(roles);
@@ -56,6 +57,6 @@ public class UserAccountTemplate extends UserDetail implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return super.getActive();
     }
 }

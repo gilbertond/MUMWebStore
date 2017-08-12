@@ -29,8 +29,8 @@ public class OrderEntity implements Serializable {
     private Address shippingAddress;
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderItems> orderItems;
-//    @Enumerated(EnumType.STRING)
-//    private OrderStatus orderStatus;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     public OrderEntity() {
         this.orderItems = new ArrayList<>();
@@ -42,7 +42,7 @@ public class OrderEntity implements Serializable {
         this.userDetail = userDetail;
         this.shippingAddress = shippingAddress;
         this.orderItems = new ArrayList<>();
-//        this.orderStatus = orderStatus;
+        this.orderStatus = orderStatus;
     }
 
     public Long getOrderId() {
@@ -81,13 +81,13 @@ public class OrderEntity implements Serializable {
         this.orderItems.add(orderItem);
     }
 
-//    public OrderStatus getOrderStatus() {
-//        return orderStatus;
-//    }
-//
-//    public void setOrderStatus(OrderStatus orderStatus) {
-//        this.orderStatus = orderStatus;
-//    }
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
     public UserDetail getUserDetail() {
         return userDetail;
@@ -142,6 +142,6 @@ public class OrderEntity implements Serializable {
     @Override
     public String toString() {
         return "Order{" + "orderNumber=" + orderNumber + ", dateCreated=" + dateCreated + ", shippingAddress=" + shippingAddress +
-                ", orderItems=" + orderItems.size();// + ", orderStatus=" + orderStatus + '}';
+                ", orderItems=" + orderItems.size() + ", orderStatus=" + orderStatus + '}';
     }
 }

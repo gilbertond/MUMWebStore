@@ -5,6 +5,7 @@
  */
 package edu.mum.authentication;
 
+import edu.mum.domain.Role;
 import edu.mum.domain.UserDetail;
 import edu.mum.service.IUserCrudRepositoryService;
 import java.util.List;
@@ -34,7 +35,7 @@ public class UserDetailsBuilder implements UserDetailsService{
         if(userDetail == null){
             throw new UsernameNotFoundException("User not found");
         }
-        List<String> roles = crudRepositoryService.findByRolesByEmail(string);
+        List<Role> roles = userDetail.getRoles(); //crudRepositoryService.findByRolesByEmail(string);
         
         return new UserAccountTemplate(userDetail, roles);
     }    

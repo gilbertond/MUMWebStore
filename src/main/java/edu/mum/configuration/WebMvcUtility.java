@@ -8,6 +8,7 @@ package edu.mum.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -36,5 +37,14 @@ public class WebMvcUtility extends WebMvcConfigurerAdapter {
         internalResourceViewResolver.setSuffix(".jsp");
 
         return internalResourceViewResolver;
+    }
+    
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry){
+        registry.addViewController("/home").setViewName("login");
+        registry.addViewController("/").setViewName("login");
+        registry.addViewController("/user").setViewName("main");
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/403").setViewName("login");
     }
 }
