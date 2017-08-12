@@ -1,4 +1,4 @@
-package mum.edu.Domain;
+package edu.mum.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -14,7 +14,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "order")
 public class Order implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
@@ -30,8 +29,8 @@ public class Order implements Serializable {
     private Address shippingAddress;
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderItems> orderItems;
-    @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+//    @Enumerated(EnumType.STRING)
+//    private OrderStatus orderStatus;
 
     public Order() {
         this.orderItems = new ArrayList<>();
@@ -43,7 +42,7 @@ public class Order implements Serializable {
         this.userDetail = userDetail;
         this.shippingAddress = shippingAddress;
         this.orderItems = new ArrayList<>();
-        this.orderStatus = orderStatus;
+//        this.orderStatus = orderStatus;
     }
 
     public Long getOrderId() {
@@ -82,13 +81,13 @@ public class Order implements Serializable {
         this.orderItems.add(orderItem);
     }
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
+//    public OrderStatus getOrderStatus() {
+//        return orderStatus;
+//    }
+//
+//    public void setOrderStatus(OrderStatus orderStatus) {
+//        this.orderStatus = orderStatus;
+//    }
 
     public UserDetail getUserDetail() {
         return userDetail;
@@ -142,6 +141,7 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "Order{" + "orderNumber=" + orderNumber + ", dateCreated=" + dateCreated + ", shippingAddress=" + shippingAddress + ", orderItems=" + orderItems.size() + ", orderStatus=" + orderStatus + '}';
+        return "Order{" + "orderNumber=" + orderNumber + ", dateCreated=" + dateCreated + ", shippingAddress=" + shippingAddress +
+                ", orderItems=" + orderItems.size();// + ", orderStatus=" + orderStatus + '}';
     }
 }

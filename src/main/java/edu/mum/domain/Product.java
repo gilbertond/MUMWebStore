@@ -1,4 +1,4 @@
-package mum.edu.Domain;
+package edu.mum.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;

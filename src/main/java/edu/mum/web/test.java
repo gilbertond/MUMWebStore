@@ -1,4 +1,4 @@
-package mum.edu.Controller;
+package edu.mum.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
