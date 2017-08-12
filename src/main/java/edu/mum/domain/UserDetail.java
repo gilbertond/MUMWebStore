@@ -1,4 +1,4 @@
-package mum.edu.Domain;
+package edu.mum.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -29,8 +29,7 @@ public class UserDetail implements Serializable {
     private String password;
     @Column(name = "active")
     private Boolean active;
-    @OneToMany(mappedBy = "userDetail", cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "addressId")
+    @OneToMany(mappedBy = "userDetail", cascade = CascadeType.PERSIST)    
     private List<Address> addresses = new ArrayList<>();
     @ElementCollection
     @Column(name = "userrole")

@@ -1,4 +1,4 @@
-package mum.edu.Domain;
+package edu.mum.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -31,7 +32,7 @@ public class Address implements Serializable {
     @Column(name = "zipCode")
     private String zipCode;
     @ManyToOne
-    @Column(name = "userdetail")
+    @JoinColumn(name = "userId")
     private UserDetail userDetail;
 
     public Address() {
