@@ -12,8 +12,8 @@ import java.util.Objects;
  * Created by Hatake on 8/11/2017.
  */
 @Entity
-@Table(name = "order")
-public class Order implements Serializable {
+@Table(name = "orderentity")
+public class OrderEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
@@ -32,11 +32,11 @@ public class Order implements Serializable {
 //    @Enumerated(EnumType.STRING)
 //    private OrderStatus orderStatus;
 
-    public Order() {
+    public OrderEntity() {
         this.orderItems = new ArrayList<>();
     }
 
-    public Order(String orderNumber, Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus) {
+    public OrderEntity(String orderNumber, Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus) {
         this.orderNumber = orderNumber;
         this.dateCreated = dateCreated;
         this.userDetail = userDetail;
@@ -123,7 +123,7 @@ public class Order implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Order other = (Order) obj;
+        final OrderEntity other = (OrderEntity) obj;
         if (!Objects.equals(this.orderId, other.getOrderId())) {
             return false;
         }

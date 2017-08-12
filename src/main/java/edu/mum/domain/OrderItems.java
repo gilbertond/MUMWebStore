@@ -15,7 +15,7 @@ public class OrderItems implements Serializable {
     private Long orderItemId;
     @ManyToOne
     @JoinColumn(name = "orderId")
-    private Order order;
+    private OrderEntity order;
     @OneToOne
     @JoinColumn(name = "productId")
     private Product product;
@@ -25,7 +25,7 @@ public class OrderItems implements Serializable {
     public OrderItems() {
     }
 
-    public OrderItems(Order order, Product product, Integer quantity) {
+    public OrderItems(OrderEntity order, Product product, Integer quantity) {
         this.order = order;
         this.product = product;
         this.quantity = quantity;
@@ -39,11 +39,11 @@ public class OrderItems implements Serializable {
         this.orderItemId = orderItemId;
     }
 
-    public Order getOrder() {
+    public OrderEntity getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(OrderEntity order) {
         this.order = order;
     }
 

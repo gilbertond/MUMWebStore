@@ -12,7 +12,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>MUM Store Login</title>
-    <link rel="stylesheet" href="css/login-style.css">
+    <link rel="stylesheet" href="../css/login-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -36,7 +36,7 @@
 
     <div class="login-section">
         <h2>Sign in</h2>
-        <form id="loginForm" method="post" action='<c:url value="/Login"/>'>
+        <form id="loginForm" method="post" action="#">
 
             <div class="form-group">
                 <label>Email address</label> <input

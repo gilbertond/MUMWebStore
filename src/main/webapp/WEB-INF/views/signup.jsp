@@ -13,7 +13,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
     <title>MUM Signup Form</title>
-    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="../css/signup.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet"
@@ -97,6 +97,7 @@
                 </fieldset>
 
                 <div class="clearfix"></div>
+            </div>
 
             </div>
             <button type="submit" name="signup-btn" class="btn btn-primary">Sign

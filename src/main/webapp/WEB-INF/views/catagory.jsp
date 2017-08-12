@@ -12,7 +12,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Product Catagory</title>
-    <link rel="stylesheet" href="css/signup.css"/>
+    <link rel="stylesheet" href="../css/signup.css"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -36,9 +36,16 @@
         <div class="form-group required">
             <label class="control-label col-md-4  requiredField">Product Catagory
             </label>
-            <div class="controls col-md-8 ">
-                <textarea class="input-md  textinput textInput form-control"
-                          name="catagorydescription"></textarea>
+            <div class="btn-group">
+                <a class="btn dropdown-toggle btn-select" data-toggle="dropdown" href="#">Select a Country <span
+                        class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Foot wear</a></li>
+                    <li><a href="#">Clothings</a></li>
+                    <li><a href="#">Electronics</a></li>
+                    <li><a href="#">Books</a></li>
+                    <li><a href="#">Beverages</a></li>
+                </ul>
             </div>
         </div>
         <div class="buttons">

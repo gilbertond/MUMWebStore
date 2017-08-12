@@ -12,7 +12,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Add Product</title>
-    <link rel="stylesheet" href="css/addProduct.css">
+    <link rel="stylesheet" href="../css/addProduct.css">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -33,6 +33,9 @@
 <%--style="width: 55%; margin: auto; border: 3px solid rgb(0, 191, 255); padding: 20px"--%>
 <div id="container">
     <form action="#" method="post">
+        <div class="form-group required">
+            <label class="control-label col-md-4 " style="margin: auto"> Add Product </label>
+        </div>
         <div class="form-group required">
             <label class="control-label col-md-4  requiredField">Catagory
             </label>
