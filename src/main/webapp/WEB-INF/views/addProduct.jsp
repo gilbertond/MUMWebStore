@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Niroj
+  Date: 8/12/2017
+  Time: 12:17 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -71,11 +78,11 @@
                 <div class="form-group">
                     <label>Upload Image</label>
                     <div class="form-group">
-                    <input type="file" id="imgInp"
-                    class="form-control btn btn-default"> <input
-                    type="hidden" name="imageName" value="default.jpg">
-                    <div id="upload" style="display: none;">Uploading..</div>
-                    <div id="message"></div>
+                        <input type="file" id="imgInp"
+                               class="form-control btn btn-default"> <input
+                            type="hidden" name="imageName" value="default.jpg">
+                        <div id="upload" style="display: none;">Uploading..</div>
+                        <div id="message"></div>
                     </div>
                 </div>
             </div>

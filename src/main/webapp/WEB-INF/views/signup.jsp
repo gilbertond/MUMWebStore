@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Niroj
+  Date: 8/12/2017
+  Time: 12:18 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -68,33 +75,33 @@
 
                     <div class="form-group">
                         <label>Street</label> <input type="text" name="street"
-                                                        class="form-control" placeholder="street" required>
+                                                     class="form-control" placeholder="street" required>
                     </div>
                     <div class="form-group">
                         <label>City</label> <input type="text" name="city"
-                                                     class="form-control" placeholder="city" required>
+                                                   class="form-control" placeholder="city" required>
                     </div>
                     <div class="form-group">
                         <label>State</label> <input type="text" name="state"
-                                                     class="form-control" placeholder="state" required>
+                                                    class="form-control" placeholder="state" required>
                     </div>
                     <div class="form-group">
                         <label>Zip</label> <input type="text" name="zip"
-                                                     class="form-control" placeholder="zip" required>
+                                                  class="form-control" placeholder="zip" required>
                     </div>
                     <div class="form-group">
                         <label>Country</label> <input type="text" name="country"
-                                                     class="form-control" placeholder="country" required>
+                                                      class="form-control" placeholder="country" required>
                     </div>
 
                 </fieldset>
 
                 <div class="clearfix"></div>
 
-        </div>
-        <button type="submit" name="signup-btn" class="btn btn-primary">Sign
-            me up
-        </button>
+            </div>
+            <button type="submit" name="signup-btn" class="btn btn-primary">Sign
+                me up
+            </button>
     </form>
 </div>
 
