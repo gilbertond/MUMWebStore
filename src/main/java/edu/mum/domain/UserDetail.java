@@ -39,6 +39,12 @@ public class UserDetail implements Serializable {
     public UserDetail() {
         this.addresses = new ArrayList<>();
     }
+    
+    public UserDetail(UserDetail detail){
+        this.active = detail.active;
+        this.email = detail.email;
+        this.password = detail.password;
+    }
 
     public UserDetail(String firstName, String lastName, String email, String password, Boolean active) {
         this.firstName = firstName;
