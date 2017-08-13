@@ -63,19 +63,11 @@
                     </form>
                 </div>
             </sec:authorize>
-            <sec:authorize access="hasRole('USER')">
-                <h1>
-                    <span class="glyphicon glyphicon-user"></span>&nbsp; <b><c:out value="${pageContext.request.remoteUser}"></c:out></b>
-                    </h1>
-                    <form action="/logout" method="post">
-                        <input type="submit" class="button red big" value="Sign Out" /> 
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                </form> 
+            <sec:authorize access="hasRole('ROLE_USER')">
+                <script>
+                    window.location.href = "/user";
+                </script> 
             </sec:authorize>
         </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -22,9 +22,9 @@ public class UserController {
 //        return "/login";
 //    }
     
-//    @RequestMapping(value = "login", method = RequestMethod.POST)
+//    @RequestMapping(value = "*", method = RequestMethod.GET)
 //    public String getMain(){
-//        return "/main";
+//        return "/NoPage";
 //    }
     
     @RequestMapping(value = "/user")
