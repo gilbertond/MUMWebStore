@@ -34,14 +34,29 @@
     <body>
         <sec:authorize access="hasRole('ROLE_USER')">
             <div id="container">
-                <h1>MUM WEB STORE</h1>            
-                <h1>
-                    <span class="glyphicon glyphicon-user"></span>&nbsp; <b><c:out value="${pageContext.request.remoteUser}"></c:out></b>
-                    </h1>
-                    <form action="/logout" method="post">
-                        <input type="submit" class="button red big" value="Sign Out" /> 
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                </form> 
+                <div class="row">
+                    <div style="width: 99%" class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div style="width: 60%" class="col-md-6 text-left text-uppercase h4">
+                                    MUM Web Store<span id="serviceMsg" class="alert alert-info h6" style="display: none;width: 200px;opacity: .7;"></span>
+                                </div>                            
+                                <div style="width: 40%" class="col-md-6 text-right">                                
+                                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                        <c:url var="logoutUrl" value="/logout"/>                                                                        
+                                        <form action="${logoutUrl}" method="post">                                        
+                                            <strong>
+                                                <span class="glyphicon glyphicon-user"></span>&nbsp;
+                                                ${pageContext.request.userPrincipal.name}<%--<c:out value="${pageContext.request.remoteUser}"></c:out>--%>
+                                            </strong> | <input class="btn btn-primary btn-sm" type="submit" value="Sign Out"/>
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        </form>
+                                    </c:if>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>                    
+                </div>
             </div>
         </sec:authorize>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -29,11 +29,10 @@ public class UserController {
     
     @RequestMapping(value = "/user")
     public String getLogin(Principal principal){
-        System.out.println("*************\n"+principal+"\n*****************");
         if (principal == null) {
             return "redirect:login";
         }
-        return "/main";
+        return "/menu2";
     }
     
     @RequestMapping(value = "/signup")
