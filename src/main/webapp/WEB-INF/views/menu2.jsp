@@ -33,7 +33,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <div style="width: 40%" class="col-md-6 text-right">                                
                         <c:if test="${pageContext.request.userPrincipal.name != null}">
                             <c:url var="logoutUrl" value="/logout"/>                                                                        
-                            <form action="${logoutUrl}" method="post">                                        
+                            <form action="/logout" method="post">                                        
                                 <strong>
                                     <span class="glyphicon glyphicon-user"></span>&nbsp;
                                     ${pageContext.request.userPrincipal.name}<%--<c:out value="${pageContext.request.remoteUser}"></c:out>--%>
