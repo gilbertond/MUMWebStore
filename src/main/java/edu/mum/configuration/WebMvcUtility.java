@@ -43,7 +43,7 @@ public class WebMvcUtility extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry){
         registry.addViewController("/home").setViewName("login");
         registry.addViewController("/").setViewName("login");
-        registry.addViewController("/user").setViewName("main");
+//        registry.addViewController("/user").setViewName("main");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/403").setViewName("login");
     }

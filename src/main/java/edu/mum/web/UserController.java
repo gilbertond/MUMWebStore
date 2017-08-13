@@ -5,6 +5,7 @@
  */
 package edu.mum.web;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,4 +30,15 @@ public class UserController {
 //    public String getLogin(){
 //        return "/main";
 //    }
+    
+    @RequestMapping(value = "/signup")
+    public String getSignup(){
+        return "/signup";
+    }
+    
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public String getSignup(HttpServletRequest request){
+        
+        return "/signup";
+    }
 }

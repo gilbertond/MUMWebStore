@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,33 +34,44 @@
     <body>
         <div id="container">
             <h1>MUM WEB STORE</h1>
-            <div class="login-section">
-                <h2>Sign in</h2>
-                <form id="loginForm" method="post" action="/login">
-                    <div class="form-group">
-                        <label>Email address</label> 
-                        <input type="email" name="uName" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label> 
-                        <input type="password" name="pWord" class="form-control" placeholder="Password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})">
-                    </div>
-                    <div class="form-check">
-                        <label class="form-check-label"> 
-                            <input type="checkbox" name="remember" class="form-check-input"> Remember Me
-                        </label>
-                    </div>
-                    <button type="submit" name="login-btn" class="btn btn-primary">Sign in</button>
-                    <a href="#" name="signup-btn" class="btn btn-info">Sign up</a>
-                    <c:if test="${param.error ne null}">
-                        <div class="alert-danger">Account not found</div>
-                    </c:if>
-                    <c:if test="${param.logout ne null}">
-                        <div class="alert-normal">Currently logged out.</div>
-                    </c:if>  
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                </form>
-            </div>
+            <sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+                <div class="login-section">
+                    <h2>Sign in</h2>
+                    <form id="loginForm" method="post" action="/login">
+                        <div class="form-group">
+                            <label>Email address</label> 
+                            <input type="email" name="uName" class="form-control" id="exampleInputEmail1" placeholder="root@emal.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label> 
+                            <input type="password" name="pWord" class="form-control" placeholder="Test123" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label"> 
+                                <input type="checkbox" name="remember" class="form-check-input"> Remember Me
+                            </label>
+                        </div>
+                        <button type="submit" name="login-btn" class="btn btn-primary">Sign in</button>
+                        <a href="/signup" name="signup-btn" class="btn btn-info">Sign up</a>
+                        <c:if test="${param.error ne null}">
+                            <div class="alert-danger">Account not found</div>
+                        </c:if>
+                        <c:if test="${param.logout ne null}">
+                            <div class="alert-normal">Currently logged out.</div>
+                        </c:if>  
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    </form>
+                </div>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_USER')">
+                <h1>
+                    <span class="glyphicon glyphicon-user"></span>&nbsp; <b><c:out value="${pageContext.request.remoteUser}"></c:out></b>
+                    </h1>
+                    <form action="/logout" method="post">
+                        <input type="submit" class="button red big" value="Sign Out" /> 
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                </form> 
+            </sec:authorize>
         </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -5,10 +5,24 @@
  */
 package edu.mum;
 
+import edu.mum.service.IUserCrudRepositoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author gilberto
  */
-public class Util {
+@Component
+public class Util implements ApplicationListener<ContextRefreshedEvent> {
+
+    @Autowired
+    IUserCrudRepositoryService crudRepositoryService;
     
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        
+    }
 }
