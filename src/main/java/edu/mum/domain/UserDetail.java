@@ -38,6 +38,13 @@ public class UserDetail implements Serializable {
     
     public UserDetail() {
         this.addresses = new ArrayList<>();
+        this.roles = new ArrayList<>();
+    }
+    
+    public UserDetail(UserDetail detail){
+        this.active = detail.active;
+        this.email = detail.email;
+        this.password = detail.password;
     }
 
     public UserDetail(String firstName, String lastName, String email, String password, Boolean active) {
@@ -47,6 +54,19 @@ public class UserDetail implements Serializable {
         this.password = password;
         this.active = active;
         this.addresses = new ArrayList<>();
+        this.roles = new ArrayList<>();
+    }
+
+    public List<Role> getRoles() {
+        return Collections.unmodifiableList(roles);
+    }
+    
+    public void addRole(Role role){
+        this.roles.add(role);
+    }
+    
+    public void addRoles(List<Role> roles){
+        this.roles.addAll(roles);
     }
 
     public Long getUserId() {

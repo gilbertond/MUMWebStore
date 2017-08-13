@@ -5,5 +5,5 @@ package edu.mum.domain;
  */
 
 public enum Role {
-    ADMINISTRATOR,CLIENT;
+    ADMINISTRATOR, CLIENT, ROOT;
 }
