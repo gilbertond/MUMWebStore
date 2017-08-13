@@ -14,7 +14,7 @@ public class OrderItems implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderItemId;
     @ManyToOne
-    @JoinColumn(name = "orderId")
+    //@JoinColumn(name = "orderId")
     private OrderEntity order;
     @OneToOne
     @JoinColumn(name = "productId")
@@ -25,8 +25,7 @@ public class OrderItems implements Serializable {
     public OrderItems() {
     }
 
-    public OrderItems(OrderEntity order, Product product, Integer quantity) {
-        this.order = order;
+    public OrderItems(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
     }

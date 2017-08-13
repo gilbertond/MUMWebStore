@@ -1,12 +1,8 @@
 package edu.mum.domain;
 
-import java.io.Serializable;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * Created by Hatake on 8/11/2017.
@@ -17,8 +13,8 @@ public class OrderEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
-    @Column(name = "orderNumber")
-    private String orderNumber;
+//    @Column(name = "orderNumber")
+//    private String orderNumber;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
     @OneToOne
@@ -27,7 +23,8 @@ public class OrderEntity implements Serializable {
     @OneToOne
     @JoinColumn(name = "addressId")
     private Address shippingAddress;
-    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "orderId")
     private List<OrderItems> orderItems;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
@@ -36,12 +33,12 @@ public class OrderEntity implements Serializable {
         this.orderItems = new ArrayList<>();
     }
 
-    public OrderEntity(String orderNumber, Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus) {
-        this.orderNumber = orderNumber;
+    public OrderEntity(Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus, List<OrderItems> orderItems) {
+//        this.orderNumber = orderNumber;
         this.dateCreated = dateCreated;
         this.userDetail = userDetail;
         this.shippingAddress = shippingAddress;
-        this.orderItems = new ArrayList<>();
+        this.orderItems = orderItems;
         this.orderStatus = orderStatus;
     }
 
@@ -53,13 +50,13 @@ public class OrderEntity implements Serializable {
         this.orderId = orderId;
     }
 
-    public String getOrderNumber() {
+ /*   public String getOrderNumber() {
         return orderNumber;
     }
 
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
-    }
+    }*/
 
     public Date getDateCreated() {
         return (Date) dateCreated.clone();
@@ -109,7 +106,6 @@ public class OrderEntity implements Serializable {
     public int hashCode() {
         int hash = 17;
         hash = 31 * hash + Objects.hashCode(this.orderId);
-        hash = 31 * hash + Objects.hashCode(this.orderNumber);
         hash = 31 * hash + Objects.hashCode(this.dateCreated);
         hash = 31 * hash + Objects.hashCode(this.userDetail);
         return hash;
@@ -127,9 +123,6 @@ public class OrderEntity implements Serializable {
         if (!Objects.equals(this.orderId, other.getOrderId())) {
             return false;
         }
-        if (!Objects.equals(this.orderNumber, other.getOrderNumber())) {
-            return false;
-        }
         if (!Objects.equals(this.dateCreated, other.getDateCreated())) {
             return false;
         }
@@ -141,7 +134,7 @@ public class OrderEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Order{" + "orderNumber=" + orderNumber + ", dateCreated=" + dateCreated + ", shippingAddress=" + shippingAddress +
-                ", orderItems=" + orderItems.size() + ", orderStatus=" + orderStatus + '}';
+        return "Order{" + "orderNumber=" + orderId + ", dateCreated=" + dateCreated + ", shippingAddress=" + shippingAddress +
+                ", orderItems=" + orderItems.size();// + ", orderStatus=" + orderStatus + '}';
     }
 }
