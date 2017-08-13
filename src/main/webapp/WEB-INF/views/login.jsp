@@ -63,7 +63,7 @@
                     </form>
                 </div>
             </sec:authorize>
-            <sec:authorize access="hasRole('ROLE_USER')">
+            <sec:authorize access="hasRole('USER')">
                 <h1>
                     <span class="glyphicon glyphicon-user"></span>&nbsp; <b><c:out value="${pageContext.request.remoteUser}"></c:out></b>
                     </h1>

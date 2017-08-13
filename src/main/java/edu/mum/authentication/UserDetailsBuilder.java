@@ -39,7 +39,8 @@ public class UserDetailsBuilder implements UserDetailsService{
             if(string.equals("root@emal.com")){
                 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
                 userDetail = new UserDetail("TestF", "TestL", "root@emal.com", bCryptPasswordEncoder.encode("Test123"), Boolean.TRUE);
-                userDetail.addRole(Role.ROOT);
+                userDetail.addRole(Role.ROLE_ROOT);
+                userDetail.addRole(Role.ROLE_USER);
                 return new UserAccountTemplate(userDetail, userDetail.getRoles());
             }
             //just for testing.....

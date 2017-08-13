@@ -49,7 +49,7 @@ public class WebMvcSecurity extends WebSecurityConfigurerAdapter{
 //                    .antMatchers("/user").hasRole("USER")
                     .anyRequest().permitAll()
                     .and()
-                    .formLogin().loginPage("/login").permitAll()
+                    .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/user")
 //                    .successHandler(successHandler())
                     .usernameParameter("uName")
                     .passwordParameter("pWord")

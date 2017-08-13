@@ -5,6 +5,7 @@
  */
 package edu.mum.web;
 
+import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +27,14 @@ public class UserController {
 //        return "/main";
 //    }
     
-//    @RequestMapping(value = "/user")
-//    public String getLogin(){
-//        return "/main";
-//    }
+    @RequestMapping(value = "/user")
+    public String getLogin(Principal principal){
+        System.out.println("*************\n"+principal+"\n*****************");
+        if (principal == null) {
+            return "redirect:login";
+        }
+        return "/main";
+    }
     
     @RequestMapping(value = "/signup")
     public String getSignup(){

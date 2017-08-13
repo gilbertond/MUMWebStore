@@ -13,8 +13,8 @@ public class OrderEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
-//    @Column(name = "orderNumber")
-//    private String orderNumber;
+    @Column(name = "orderNumber")
+    private String orderNumber;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
     @OneToOne
@@ -33,8 +33,8 @@ public class OrderEntity implements Serializable {
         this.orderItems = new ArrayList<>();
     }
 
-    public OrderEntity(Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus, List<OrderItems> orderItems) {
-//        this.orderNumber = orderNumber;
+    public OrderEntity(Date dateCreated, String orderNo, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus, List<OrderItems> orderItems) {
+        this.orderNumber = orderNo;
         this.dateCreated = dateCreated;
         this.userDetail = userDetail;
         this.shippingAddress = shippingAddress;
@@ -50,13 +50,13 @@ public class OrderEntity implements Serializable {
         this.orderId = orderId;
     }
 
- /*   public String getOrderNumber() {
+    public String getOrderNumber() {
         return orderNumber;
     }
 
     public void setOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
-    }*/
+    }
 
     public Date getDateCreated() {
         return (Date) dateCreated.clone();
