@@ -13,62 +13,68 @@
     </head>
     <body>
         <div id="usersDiv" align="center">
-            <c:choose>
-                <c:when test="${empty users}">
-                    <span class="alert alert-info">No users registered yet</span>
-                </c:when>
-                <c:otherwise>     
-                    <div style="max-height: 200px;" class="table-responsive">
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0" id="table" class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Firtname</th>
-                                    <th>Lastname</th>
-                                    <th>Email</th>
-                                    <th>Status</th>
-                                    <th>Role</th>
-                                    <th>Update/Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${users}" varStatus="status" var="user">
-                                    <tr style="">  
-                                        <td style="width: 5%">
-                                            ${status.count}
-                                        </td>
-                                        <td style="width: 10%">
-                                            ${user.firstName}
-                                        </td>
-                                        <td style="width: 10%">
-                                            ${user.lastName}
-                                        </td>
-                                        <td style="width: 20%">
-                                            ${user.email}
-                                        </td>
-                                        <td style="width: 5%">
-                                            ${user.active? 'ACTIVE':'DISABLED'}
-                                        </td>      
-                                        <td style="width: 20%">
-                                            ${user.roles}
-                                        </td>
-                                <td style="width: 20%;text-align: center">
-                                    <a href="#" id="editUser" onclick="callAjaxRequest('/updateUser', 'divAddService', {task: 'edit', id: ${user.userId}}, 'GET');" 
-                                       style="color: blueviolet;font-size: 1.2em;" class="glyphicon glyphicon-edit">
-                                    </a>
-                                    &nbsp;
-                                    <a href="#" id="deleteUser" onclick=" if (confirm('Delete User ${user.firstName} ${user.lastName}')){
-                                        callAjaxRequest('/deleteUser', 'divAddService', {task: 'delete', id: ${user.userId}}, 'GET'); 
-                                        }" style="color: blueviolet;font-size: 1.2em;" class="glyphicon glyphicon-trash">
-                                        </a>
-                                    </td>
+            <div style="width: 100%" valign="top">
+                ${message}
+                <button onclick="ajaxSubmitData('/addNewUser', 'usersDiv', null, 'GET');" class="btn btn-info" style="height: 40px;width: 100px;float: left;margin-left: 100px">Add Service</button>                                
+            </div>
+            <div style="width: 100%" valign="top">
+                <c:choose>
+                    <c:when test="${empty users}">
+                        <span class="alert alert-info">No users registered yet</span>
+                    </c:when>
+                    <c:otherwise>     
+                        <div style="max-height: 200px;" class="table-responsive">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0" id="table" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Firtname</th>
+                                        <th>Lastname</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>Role</th>
+                                        <th>Update/Delete</th>
                                     </tr>
-                            </c:forEach>                                                    
-                            </tbody>
-                        </table>    
-                    </div>                                
-                </c:otherwise>
-            </c:choose>                                        
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${users}" varStatus="status" var="user">
+                                        <tr style="">  
+                                            <td style="width: 5%">
+                                                ${status.count}
+                                            </td>
+                                            <td style="width: 10%">
+                                                ${user.firstName}
+                                            </td>
+                                            <td style="width: 10%">
+                                                ${user.lastName}
+                                            </td>
+                                            <td style="width: 20%">
+                                                ${user.email}
+                                            </td>
+                                            <td style="width: 5%">
+                                                ${user.active? 'ACTIVE':'DISABLED'}
+                                            </td>      
+                                            <td style="width: 20%">
+                                                ${user.roles}
+                                            </td>
+                                            <td style="width: 20%;text-align: center">
+                                                <a href="#" id="editUser" onclick="callAjaxRequest('/updateUser', 'usersDiv', {id: ${user.userId}}, 'GET');" 
+                                                   style="color: blueviolet;font-size: 1.2em;" class="glyphicon glyphicon-edit">
+                                                </a>
+                                                &nbsp;
+                                                <a href="#" id="deleteUser" onclick=" if (confirm('Delete User ${user.firstName} ${user.lastName}')){
+                                        callAjaxRequest('/deleteUser', 'usersDiv', {id: ${user.userId}}, 'GET'); 
+                                                        }" style="color: blueviolet;font-size: 1.2em;" class="glyphicon glyphicon-trash">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>                                                    
+                                </tbody>
+                            </table>    
+                        </div>                                
+                    </c:otherwise>
+                </c:choose>  
+            </div>
         </div>
     </body>
 </html>

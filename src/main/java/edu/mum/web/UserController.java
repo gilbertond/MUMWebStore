@@ -51,8 +51,8 @@ public class UserController {
     @RequestMapping(value = "/manageUsers")
     public String manageUsers(Model model){
         
-        List<UserDetail> userdetails = crudRepositoryService.findByisStaff(Boolean.TRUE);
-        System.out.println("************"+userdetails.size());
+        List<UserDetail> userdetails = (List<UserDetail>)crudRepositoryService.findByisStaff(Boolean.TRUE);
+        
         model.addAttribute("users", userdetails);
         return "/manageUsers";
     }
@@ -77,10 +77,43 @@ public class UserController {
         }
         userDetail.setIsStaff(Boolean.FALSE);
         userDetail.addRole(Role.ROLE_USER);
+        userDetail.addRole(Role.ROLE_CLIENT);
+        
         crudRepositoryService.save(userDetail);
         redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details, please sign in to continue</span>");
         
         return "redirect:login";
+    }
+    
+    @RequestMapping(value = "/userSave", method = RequestMethod.POST)
+    public String userSave(HttpServletRequest request, @ModelAttribute("userdetail") UserDetail userDetailx, final RedirectAttributes redirectAttributes){
+        System.out.println("Posting.......");
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        UserDetail userDetail = new UserDetail(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"),
+                encoder.encode(request.getParameter("password")), Boolean.TRUE);
+        
+        userDetail.setIsStaff(Boolean.TRUE);
+        userDetail.addRole(Role.ROLE_USER);
+        userDetail.addRole(Role.ROLE_ADMINISTRATOR);
+        crudRepositoryService.save(userDetail);
+        redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details, please sign in to continue</span>");
+        
+        return "redirect:manageUsers";
+    }
+    
+    @RequestMapping(value = "/updateUser")
+    public String updateUser(){
+        return "/updateUser";
+    }
+    
+    @RequestMapping(value = "/addNewUser")
+    public String addNewUser(){
+        return "/addNewUser";
+    }
+    
+    @RequestMapping(value = "/deleteUser")
+    public String deleteUser(){
+        return "redirect:manageUsers";
     }
     
     @RequestMapping(value = "/updatedetails", method = RequestMethod.POST)

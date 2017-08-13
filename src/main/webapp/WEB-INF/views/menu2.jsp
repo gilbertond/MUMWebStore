@@ -90,7 +90,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     </div>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMINISTRATOR')">
-                    <div class="panel panel-default">
+                    <div style="display: none" class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
@@ -130,7 +130,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                                         <a href="#">Change Password</a>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="display: none">
                                     <td>
                                         <a href="#">Notifications</a> 
                                         <span class="label label-info">5</span>
