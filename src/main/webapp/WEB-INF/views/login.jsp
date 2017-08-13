@@ -46,21 +46,23 @@
                             <label>Password</label> 
                             <input type="password" name="pWord" class="form-control" placeholder="Test123" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})">
                         </div>
-                        <div class="form-check">
+                        <div style="height: 50px;margin-top: 10px" class="form-check">
                             <label class="form-check-label"> 
-                                <input type="checkbox" name="remember" class="form-check-input"> Remember Me
+                                ${message}
+                                <c:if test="${param.error ne null}">
+                                    <div class="alert-danger">Account not found</div>
+                                </c:if>
+                                <c:if test="${param.logout ne null}">
+                                    <div class="alert-normal">Currently logged out.</div>
+                                </c:if> 
+                                <!--input type="checkbox" name="remember" class="form-check-input"> Remember Me-->
                             </label>
                         </div>
                         <button type="submit" name="login-btn" class="btn btn-primary">Sign in</button>
-                        <a href="/signup" name="signup-btn" class="btn btn-info">Sign up</a>
-                        <c:if test="${param.error ne null}">
-                            <div class="alert-danger">Account not found</div>
-                        </c:if>
-                        <c:if test="${param.logout ne null}">
-                            <div class="alert-normal">Currently logged out.</div>
-                        </c:if>  
+                        <a href="/signup" name="signup-btn" class="btn btn-info">Sign up</a>                         
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form>
+                    
                 </div>
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_USER')">

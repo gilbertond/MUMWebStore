@@ -27,11 +27,13 @@ public class UserDetail implements Serializable {
     private String email;
     @Column(name = "password")
     private String password;
+    @Column(name = "phone")
+    private String phone;
     @Column(name = "active")
     private Boolean active;
-    @OneToMany(mappedBy = "userDetail", cascade = CascadeType.PERSIST)    
+    @OneToMany(mappedBy = "userDetail", cascade = CascadeType.ALL)    
     private List<Address> addresses = new ArrayList<>();
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "userrole")
     @Enumerated(EnumType.STRING)
     List<Role> roles;
@@ -55,6 +57,14 @@ public class UserDetail implements Serializable {
         this.active = active;
         this.addresses = new ArrayList<>();
         this.roles = new ArrayList<>();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public List<Role> getRoles() {

@@ -32,30 +32,31 @@
     <body>
         <div id="container">
             <h1>Sign up now</h1>
-            <form id="signup-form" method="post">
+            <form action="/signupSave" id="signup-form" method="post">
                 <div class="form-group">
                     <label>First Name</label> 
                     <input type="text" name="firstname" class="form-control" placeholder="first name" required/>
                 </div>
                 <div class="form-group">
-                    <label>Last Name</label> <input type="text" name="lastname" class="form-control" placeholder="last name" required/>
+                    <label>Last Name</label> 
+                    <input type="text" name="lastname" class="form-control" placeholder="last name" required/>
                 </div>
                 <div class="form-group">
-                    <label>Address</label> 
-                    <input type="text" name="address" class="form-control" placeholder="Address" required/>
-                </div>
+                    <label>Phone</label> 
+                    <input type="tel" name="phone" class="form-control" placeholder="phone" required/>
+                </div>                
                 <div class="form-group">
                     <label>Email address</label> 
                     <input type="email" name="email" id="emailId" class="form-control" placeholder="Email address" required/>
                     <div id="emailmsg"></div>
                 </div>
-                <div class="form-group">
-                    <label>Password</label> 
-                    <input type="password" name="password" id="pwd" class="form-control" placeholder="Password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})" required/>
+                <div style="width: 80%" class="form-group">
+                    <label class="col-2 col-form-label">Password</label> 
+                    <input type="password" name="password" id="pwd" class="form-control " placeholder="Password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})" required/>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <fieldset class="col-md-6">
+                        <fieldset class="form-group">
                             <legend>Address 1 *</legend>
                             <div class="form-group">
                                 <label>Street</label> 
@@ -77,7 +78,7 @@
                                 <input type="text" name="country" class="form-control" placeholder="country" required/>
                             </div>
                         </fieldset>
-                        <fieldset class="col-md-6">
+                        <fieldset class="form-group">
                             <legend>Address 2 (Optional)</legend>
                             <div class="form-group">
                                 <label>Street</label> 
@@ -100,7 +101,7 @@
                                 <input type="text" name="country2" class="form-control" placeholder="country"/>
                             </div>
                         </fieldset>
-                        <fieldset class="col-md-6">
+                        <fieldset class="form-group">
                             <legend>Address 3 (Optional)</legend>
                             <div class="form-group">
                                 <label>Street</label> 
@@ -125,7 +126,8 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <button type="submit" name="signup-btn" class="btn btn-primary">Sign me up</button>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                <input type="submit" value="Sign me up" name="signup-btn" class="btn btn-primary"/>
             </form>
         </div>
     </body>
