@@ -1,21 +1,32 @@
 package edu.mum.domain;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Hatake on 8/11/2017.
  */
 @Entity
 @Table(name = "product")
-public class Product implements Serializable{
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
     @Column(name = "productName")
     private String productName;
+
+    public Product(String productName, ProductCategory category, Double cost, Integer quantityAvailable, byte[] image, String description) {
+        this.productName = productName;
+        this.category = category;
+        this.cost = cost;
+        this.quantityAvailable = quantityAvailable;
+        this.image = image;
+        this.description = description;
+    }
+
     @ManyToOne
     @JoinColumn(name = "categoryId")
+
     private ProductCategory category;
     @Column(name = "cost")
     private Double cost;
