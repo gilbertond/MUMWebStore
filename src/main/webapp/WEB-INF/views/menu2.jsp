@@ -22,6 +22,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
     .panel-body table tr td { padding-left: 15px }
     .panel-body .table {margin-bottom: 0px; }
 </style>
+<script src="resources/js/ourAjax.js" type="text/javascript"></script>
 <div class="container">
     <div class="row">
         <div style="width: 99%" class="panel panel-primary">
@@ -47,69 +48,73 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
         </div>
         <div class="col-sm-3 col-md-3">
             <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
-                                </span>Content</a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span>
-                                        <a href="#">Articles</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span>
-                                        <a href="#">News</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span>
-                                        <a href="#">Newsletters</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span>
-                                        <a href="#">Comments</a>
-                                        <span class="badge">42</span>
-                                    </td>
-                                </tr>
-                            </table>
+                <sec:authorize access="hasRole('ROLE_ADMINISTRATOR')">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                                    </span>Content</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-pencil text-primary"></span>
+                                            <a href="#">Articles</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-flash text-success"></span>
+                                            <a href="#">News</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-file text-info"></span>
+                                            <a href="#">Newsletters</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-comment text-success"></span>
+                                            <a href="#">Comments</a>
+                                            <span class="badge">42</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
-                                </span>Modules</a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href="#">Shipments</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Tex</a>
-                                    </td>
-                                </tr>
-                            </table>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_ADMINISTRATOR')">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
+                                    </span>Modules</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <a href="#">Shipments</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">Tex</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </sec:authorize>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -127,14 +132,17 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="#">Notifications</a> <span class="label label-info">5</span>
+                                        <a href="#">Notifications</a> 
+                                        <span class="label label-info">5</span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Import/Export</a>
-                                    </td>
-                                </tr>
+                                <sec:authorize access="hasRole('ROLE_ADMINISTRATOR') and hasRole('ROLE_USER') and hasRole('ROLE_ROOT')">
+                                    <tr>
+                                        <td>
+                                            <a onclick="callAjaxRequest('manageUsers', 'contectDiv', 'GET', {})" href="#">User management</a>
+                                        </td>
+                                    </tr>
+                                </sec:authorize>
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-trash text-danger"></span>
@@ -157,26 +165,34 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <div id="collapseFour" class="panel-collapse collapse">
                         <div class="panel-body">
                             <table class="table">
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-usd"></span><a href="#">Sales</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-user"></span><a href="#">Customers</a>
-                                    </td>
-                                </tr>
+                                <sec:authorize access="hasRole('ROLE_ADMINISTRATOR') and hasRole('ROLE_USER') and hasRole('ROLE_ROOT')">
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-usd"></span><a href="#">Sales</a>
+                                        </td>
+                                    </tr>
+                                </sec:authorize>
+                                <sec:authorize access="hasRole('ROLE_ADMINISTRATOR') and hasRole('ROLE_USER') and hasRole('ROLE_ROOT')">
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-user"></span><a href="#">Customers</a>
+                                        </td>
+                                    </tr>
+                                </sec:authorize>
+                                <sec:authorize access="hasRole('ROLE_ADMINISTRATOR') and hasRole('ROLE_USER') and hasRole('ROLE_ROOT')">
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-tasks"></span><a href="#">Products</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-shopping-cart"></span><a href="#">Shopping Cart</a>
-                                    </td>
-                                </tr>
+                                </sec:authorize>
+                                <sec:authorize access="hasRole('ROLE_CLIENT') and hasRole('ROLE_USER') and hasRole('ROLE_ROOT')">
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-shopping-cart"></span><a href="#">Shopping Cart</a>
+                                        </td>
+                                    </tr>
+                                </sec:authorize>
                             </table>
                         </div>
                     </div>
@@ -187,6 +203,9 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
             <div class="well">
                 <h1>Control Panel</h1>
                 Admin Dashboard
+            </div>
+            <div id="contectDiv" class="row">
+                
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@ import edu.mum.domain.Role;
 import edu.mum.domain.UserDetail;
 import edu.mum.service.IUserCrudRepositoryService;
 import java.security.Principal;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -47,6 +48,15 @@ public class UserController {
         return "/signup";
     }
     
+    @RequestMapping(value = "/manageUsers")
+    public String manageUsers(Model model){
+        
+        List<UserDetail> userdetails = crudRepositoryService.findByisStaff(Boolean.TRUE);
+        System.out.println("************"+userdetails.size());
+        model.addAttribute("users", userdetails);
+        return "/manageUsers";
+    }
+    
     @RequestMapping(value = "/signupSave", method = RequestMethod.POST)
     public String getSignup(HttpServletRequest request, @ModelAttribute("userdetail") UserDetail userDetailx, final RedirectAttributes redirectAttributes){
         System.out.println("Posting.......");
@@ -65,7 +75,7 @@ public class UserController {
             userDetail.addAddress(new Address(request.getParameter("street3"), request.getParameter("city3"), request.getParameter("state3"), 
                     request.getParameter("country3"), request.getParameter("zip3"), userDetail));
         }
-        
+        userDetail.setIsStaff(Boolean.FALSE);
         userDetail.addRole(Role.ROLE_USER);
         crudRepositoryService.save(userDetail);
         redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details, please sign in to continue</span>");

@@ -37,6 +37,8 @@ public class UserDetail implements Serializable {
     @Column(name = "userrole")
     @Enumerated(EnumType.STRING)
     List<Role> roles;
+    @Column(name = "isStaff")
+    private Boolean isStaff;
     
     public UserDetail() {
         this.addresses = new ArrayList<>();
@@ -49,6 +51,14 @@ public class UserDetail implements Serializable {
         this.password = detail.password;
     }
 
+    public Boolean getIsStaff() {
+        return isStaff;
+    }
+
+    public void setIsStaff(Boolean isStaff) {
+        this.isStaff = isStaff;
+    }
+    
     public UserDetail(String firstName, String lastName, String email, String password, Boolean active) {
         this.firstName = firstName;
         this.lastName = lastName;

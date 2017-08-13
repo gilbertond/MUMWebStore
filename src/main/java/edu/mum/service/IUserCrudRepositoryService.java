@@ -19,7 +19,12 @@ import org.springframework.stereotype.Service;
  */
 @Repository("crudRepositoryService")
 public interface IUserCrudRepositoryService extends CrudRepository<UserDetail, Long>{
+    
     public UserDetail findByEmail(String email);
+    
+    public List<UserDetail> findByIsStaffAndActive(Boolean staff, Boolean active);
+    
+    public List<UserDetail> findByisStaff(Boolean staff);
     
 //    @Query("SELECT ur FROM UserDetail u JOIN FETCH u.roles ur WHERE u.email=?")
 //    public List<Role> findByRolesByEmail(String email);
