@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,7 +37,8 @@ public class UserDetailsBuilder implements UserDetailsService{
             
             //just for testing.....
             if(string.equals("root@emal.com")){
-                userDetail = new UserDetail("TestF", "TestL", "root@emal.com", "$2a$04$4Evubhc3m6xSC2XMfjHjqeeEP4bbWzHD/tfUlGT5Q1W7dis.HUhH6", Boolean.TRUE);
+                BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+                userDetail = new UserDetail("TestF", "TestL", "root@emal.com", bCryptPasswordEncoder.encode("Test123"), Boolean.TRUE);
                 userDetail.addRole(Role.ROOT);
                 return new UserAccountTemplate(userDetail, userDetail.getRoles());
             }

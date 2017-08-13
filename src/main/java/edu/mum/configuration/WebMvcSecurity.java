@@ -6,7 +6,6 @@
 package edu.mum.configuration;
 
 import edu.mum.authentication.UserAccountTemplate;
-import edu.mum.service.IUserCrudRepositoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,6 +17,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 /**
  *
@@ -46,9 +47,10 @@ public class WebMvcSecurity extends WebSecurityConfigurerAdapter{
         httpSecurity.authorizeRequests()
                     .antMatchers("/user/").access("hasRole('ROLE_USER')")
                     .antMatchers("/user").hasRole("USER")
-//                    .anyRequest().permitAll()
+                    .anyRequest().permitAll()
                     .and()
-                    .formLogin().loginPage("/login")
+                    .formLogin().loginPage("/login").permitAll()
+//                    .successHandler(successHandler())
                     .usernameParameter("uName")
                     .passwordParameter("pWord")
                     .and()
@@ -56,6 +58,15 @@ public class WebMvcSecurity extends WebSecurityConfigurerAdapter{
                     .and()
                     .exceptionHandling().accessDeniedPage("/403")
                     .and()
-                    .csrf();                    
+                    .csrf()
+                    .and()
+                    .requestCache();                    
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
+        handler.setUseReferer(true);
+        return handler;
     }
 }

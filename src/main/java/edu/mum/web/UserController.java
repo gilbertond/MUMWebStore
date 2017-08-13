@@ -7,6 +7,7 @@ package edu.mum.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -19,9 +20,9 @@ public class UserController {
 //        return "/login";
 //    }
     
-//    @RequestMapping(value = "user")
+//    @RequestMapping(value = "login", method = RequestMethod.POST)
 //    public String getMain(){
-//        return "/catagory";
+//        return "/main";
 //    }
     
 //    @RequestMapping(value = "/user")
