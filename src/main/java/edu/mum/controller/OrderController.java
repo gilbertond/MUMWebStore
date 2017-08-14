@@ -2,12 +2,11 @@ package edu.mum.controller;
 
 import edu.mum.domain.*;
 import edu.mum.service.OrderService;
+import edu.mum.service.ProductService;
 import edu.mum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -25,20 +24,29 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProductService productService;
 
+    @RequestMapping("/getCartPage")
+    public String cartPage(){
+        return "cartPage";
+    }
 
-    @RequestMapping(value = "/addToCart", method = RequestMethod.POST)
-    public String orderNow(Long id, int qty, HttpSession session) {
+    @RequestMapping(value = "/addToCart/{id}", method = RequestMethod.POST)
+    public String orderNow(@PathVariable("id") Long id, HttpSession session) {
+        System.out.println(id);
+        //System.out.println(qty);
+        Product product=productService.findByProductId(id);
         if (session.getAttribute("cart") == null) {
-            List<OrderItems> orderItems = new ArrayList<>();
+            List<OrderItems> orderItems=new ArrayList<>();
             session.setAttribute("cart", orderItems);
         }
         List<OrderItems> orderItems = (List<OrderItems>) session.getAttribute("cart");
-        OrderItems orderItems1 = orderService.setOrderItem(id, qty);
+        OrderItems orderItems1 = orderService.setOrderItem(product.getProductId(), product.getQuantityAvailable());
         orderItems.add(orderItems1);
         session.setAttribute("cart", orderItems);
 
-        return "redirect:/cartPage";
+        return "redirect:/getCartPage";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -49,7 +57,7 @@ public class OrderController {
         return "redirect:/cartPage";
     }
 
-    @RequestMapping(value = "/checkout",method = RequestMethod.GET)
+    @RequestMapping(value = "/checkout",method = RequestMethod.POST)
     public String checkout(@ModelAttribute Address shippingAddress, Principal principal, HttpSession session){
         Date date = new Date();
         UserDetail userDetail = userService.findByEmail(principal.getName());
