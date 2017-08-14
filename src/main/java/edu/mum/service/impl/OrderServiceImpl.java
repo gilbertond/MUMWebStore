@@ -1,9 +1,9 @@
 package edu.mum.service.impl;
 
+import edu.mum.dao.ProductRepository;
 import edu.mum.domain.OrderEntity;
 import edu.mum.domain.OrderItems;
 import edu.mum.repository.OrderRepository;
-import edu.mum.repository.ProductRepository;
 import edu.mum.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -38,7 +38,8 @@ public class UserController {
         }
         UserDetail userDetail = crudRepositoryService.findByEmail(principal.getName());
         if (userDetail!=null && userDetail.getRoles().contains(Role.ROLE_CLIENT)) {
-            return "/index";
+            System.out.println("************************************");
+            return "redirect:index";
         }
         return "/menu2";
     }
@@ -63,24 +64,24 @@ public class UserController {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         UserDetail userDetail = new UserDetail(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"),
                 encoder.encode(request.getParameter("password")), Boolean.TRUE);
-        userDetail.addAddress(new Address(request.getParameter("street"), request.getParameter("city"), request.getParameter("state"), 
-                request.getParameter("country"), request.getParameter("zip"), userDetail));
+        userDetail.addAddress(request.getParameter("street"), request.getParameter("city"), request.getParameter("state"), 
+                request.getParameter("country"), request.getParameter("zip"));
         userDetail.setPhone(request.getParameter("phone"));
         if (request.getParameter("street2") != null && !request.getParameter("street2").equals("")) {
-            userDetail.addAddress(new Address(request.getParameter("street2"), request.getParameter("city2"), request.getParameter("state2"), 
-                    request.getParameter("country2"), request.getParameter("zip2"), userDetail));
+            userDetail.addAddress(request.getParameter("street2"), request.getParameter("city2"), request.getParameter("state2"), 
+                    request.getParameter("country2"), request.getParameter("zip2"));
         }
         
         if (request.getParameter("street3") != null && !request.getParameter("street3").equals("")) {
-            userDetail.addAddress(new Address(request.getParameter("street3"), request.getParameter("city3"), request.getParameter("state3"), 
-                    request.getParameter("country3"), request.getParameter("zip3"), userDetail));
+            userDetail.addAddress(request.getParameter("street3"), request.getParameter("city3"), request.getParameter("state3"), 
+                    request.getParameter("country3"), request.getParameter("zip3"));
         }
         userDetail.setIsStaff(Boolean.FALSE);
         userDetail.addRole(Role.ROLE_USER);
         userDetail.addRole(Role.ROLE_CLIENT);
         
         crudRepositoryService.save(userDetail);
-        redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details, please sign in to continue</span>");
+        redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details</span>");
         
         return "redirect:login";
     }
@@ -133,17 +134,17 @@ public class UserController {
         UserDetail userDetail = new UserDetail(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"),
                 encoder.encode(request.getParameter("password")), Boolean.TRUE);
         userDetail.setUserId(id);
-        userDetail.addAddress(new Address(request.getParameter("street"), request.getParameter("city"), request.getParameter("state"), 
-                request.getParameter("country"), request.getParameter("zip"), userDetail));
+        userDetail.addAddress(request.getParameter("street"), request.getParameter("city"), request.getParameter("state"), 
+                request.getParameter("country"), request.getParameter("zip"));
         
         if (request.getParameter("street2") != null && !request.getParameter("street2").equals("")) {
-            userDetail.addAddress(new Address(request.getParameter("street2"), request.getParameter("city2"), request.getParameter("state2"), 
-                    request.getParameter("country2"), request.getParameter("zip2"), userDetail));
+            userDetail.addAddress(request.getParameter("street2"), request.getParameter("city2"), request.getParameter("state2"), 
+                    request.getParameter("country2"), request.getParameter("zip2"));
         }
         
         if (request.getParameter("street3") != null && !request.getParameter("street3").equals("")) {
-            userDetail.addAddress(new Address(request.getParameter("street3"), request.getParameter("city3"), request.getParameter("state3"), 
-                    request.getParameter("country3"), request.getParameter("zip3"), userDetail));
+            userDetail.addAddress(request.getParameter("street3"), request.getParameter("city3"), request.getParameter("state3"), 
+                    request.getParameter("country3"), request.getParameter("zip3"));
         }
         
         userDetail.addRole(Role.ROLE_USER);

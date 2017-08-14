@@ -66,7 +66,17 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <button type="button" class="btn btn-info navbar-btn"><a href='<c:url value="#"/>'>Sign In</a></button>
+                    
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <c:url var="logoutUrl" value="/logout"/>                                                                        
+                            <form action="/logout" method="post">                                        
+                                <strong>
+                                    <span class="glyphicon glyphicon-user"></span>&nbsp;
+                                    ${pageContext.request.userPrincipal.name}<%--<c:out value="${pageContext.request.remoteUser}"></c:out>--%>
+                                </strong> | <input class="btn btn-primary btn-sm" type="submit" value="Sign Out"/>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </form>
+                        </c:if>
                 </li>
             </ul>
             <%-- ${loggeduser} --%>
@@ -148,6 +158,6 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 
-<script src="../javascript/productdescription.js" rel="text/javascript"></script>
+<script src="static/js/productdescription.js" rel="text/javascript"></script>
 </body>
 </html>

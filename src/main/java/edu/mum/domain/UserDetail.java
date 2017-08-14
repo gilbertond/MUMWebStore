@@ -145,7 +145,8 @@ public class UserDetail implements Serializable {
         return this.addresses.size();
     }
 
-    public void addAddress(Address address) {
+    public void addAddress(String street, String city, String state, String country, String zipCode) {
+        Address address = new Address(street, city, state, country, zipCode, this);
         this.addresses.add(addressSize(), address);
     }
 
