@@ -14,7 +14,7 @@ public class OrderItems implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderItemId;
     @ManyToOne
-    @JoinColumn(name = "orderId")
+    //@JoinColumn(name = "orderId")
     private OrderEntity order;
     @OneToOne
     @JoinColumn(name = "productId")
@@ -23,6 +23,11 @@ public class OrderItems implements Serializable {
     private Integer quantity;
 
     public OrderItems() {
+    }
+
+    public OrderItems(Product product, Integer quantity) {
+        this.product = product;
+        this.quantity = quantity;
     }
 
     public OrderItems(OrderEntity order, Product product, Integer quantity) {
@@ -99,6 +104,6 @@ public class OrderItems implements Serializable {
 
     @Override
     public String toString() {
-        return "OrderItems{" + "order=" + order.getOrderNumber() + ", product=" + product + ", quantity=" + quantity + '}';
+        return "OrderItems{" + "order=" + order.getOrderId() + ", product=" + product + ", quantity=" + quantity + '}';
     }
 }

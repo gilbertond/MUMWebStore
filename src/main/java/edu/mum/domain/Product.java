@@ -1,6 +1,7 @@
 package edu.mum.domain;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import javax.persistence.*;
 
 /**
@@ -17,12 +18,26 @@ public class Product implements Serializable{
     @ManyToOne
     @JoinColumn(name = "categoryId")
     private ProductCategory category;
+
+//    @Override
+//    public String toString() {
+//        return "Product{" +
+//                "productId=" + productId +
+//                ", productName='" + productName + '\'' +
+//                ", category=" + category +
+//                ", cost=" + cost +
+//                ", quantityAvailable=" + quantityAvailable +
+//                ", image=" + Arrays.toString(image) +
+//                ", description='" + description + '\'' +
+//                '}';
+//    }
+
     @Column(name = "cost")
     private Double cost;
     @Column(name = "quantityAvailable")
     private Integer quantityAvailable;
-    @Lob
-    private byte[] image;
+    @Column(name="image")
+    private String image;
     @Column(name = "description")
     private String description;
 
@@ -70,11 +85,11 @@ public class Product implements Serializable{
         this.quantityAvailable = quantityAvailable;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
