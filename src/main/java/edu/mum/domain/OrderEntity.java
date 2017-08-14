@@ -30,20 +30,21 @@ public class OrderEntity implements Serializable {
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name="orderId")
     private List<OrderItems> orderItems;
-//    @Enumerated(EnumType.STRING)
-//    private OrderStatus orderStatus;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     public OrderEntity() {
         this.orderItems = new ArrayList<>();
     }
 
-    public OrderEntity(Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus) {
+    public OrderEntity(Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus,List<OrderItems> orderItems) {
        // this.orderNumber = orderNumber;
         this.dateCreated = dateCreated;
         this.userDetail = userDetail;
         this.shippingAddress = shippingAddress;
         this.orderItems = new ArrayList<>();
-//        this.orderStatus = orderStatus;
+       this.orderStatus = orderStatus;
+       this.orderItems=orderItems;
     }
 
     public Long getOrderId() {
@@ -82,13 +83,13 @@ public class OrderEntity implements Serializable {
         this.orderItems.add(orderItem);
     }
 
-//    public OrderStatus getOrderStatus() {
-//        return orderStatus;
-//    }
-//
-//    public void setOrderStatus(OrderStatus orderStatus) {
-//        this.orderStatus = orderStatus;
-//    }
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
     public UserDetail getUserDetail() {
         return userDetail;

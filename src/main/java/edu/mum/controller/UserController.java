@@ -53,7 +53,7 @@ public class UserController {
     public String deleteAccount(Principal principal){
         UserDetail detail = crudRepositoryService.findByEmail(principal.getName());
         crudRepositoryService.delete(detail);
-        return "/logout";
+        return "redirect:/login?logout";
     }
     
     @RequestMapping(value = "/manageUsers")

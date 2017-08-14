@@ -1,9 +1,9 @@
 package edu.mum.controller;
 
 import edu.mum.domain.*;
+import edu.mum.service.IUserCrudRepositoryService;
 import edu.mum.service.OrderService;
 import edu.mum.service.ProductService;
-import edu.mum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
     @Autowired
-    private UserService userService;
+    private IUserCrudRepositoryService userService;
     @Autowired
     private ProductService productService;
 
@@ -64,10 +64,9 @@ public class OrderController {
         shippingAddress.setUserDetail(userDetail);
         OrderStatus orderStatus = OrderStatus.NEW;
         List<OrderItems> orderItems = (List<OrderItems>) session.getAttribute("cart");
-        OrderEntity orderEntity=new OrderEntity(date, userDetail, shippingAddress, orderStatus);//(date, userDetail,shippingAddress,orderStatus,orderItems);
+        OrderEntity orderEntity=new OrderEntity(date, userDetail, shippingAddress, orderStatus,orderItems);//(date, userDetail,shippingAddress,orderStatus,orderItems);
         orderService.checkOut(orderEntity);
         session.removeAttribute("cart");
         return "successPage";
     }
-
 }
