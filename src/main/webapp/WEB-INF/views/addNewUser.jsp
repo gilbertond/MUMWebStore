@@ -7,30 +7,32 @@
 --%>
 
 <div id="container">
-    <h1>Sign up now</h1>
-    <form action="/userSave" id="signup-form" method="post">
-        <div class="form-group">
-            <label>First Name</label> 
-            <input type="text" name="firstname" class="form-control" placeholder="first name" required/>
-        </div>
-        <div class="form-group">
-            <label>Last Name</label> 
-            <input type="text" name="lastname" class="form-control" placeholder="last name" required/>
-        </div>
-        <div class="form-group">
-            <label>Phone</label> 
-            <input type="tel" name="phone" class="form-control" placeholder="phone" required/>
-        </div>                
-        <div class="form-group">
-            <label>Email address</label> 
-            <input type="email" name="email" id="emailId" class="form-control" placeholder="Email address" required/>
-            <div id="emailmsg"></div>
-        </div>
-        <div style="width: 80%" class="form-group">
-            <label class="col-2 col-form-label">Password</label> 
-            <input type="password" name="password" id="pwd" class="form-control " placeholder="Password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})" required/>
-        </div>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        <input type="submit" value="Sign me up" name="Register" class="btn btn-primary"/>
-    </form>
+    <h1>Register new user</h1>
+    <div id="container">
+        <form action="/userSave" id="signup-form" method="post">
+            <div class="form-group">
+                <label>First Name</label> 
+                <input type="text" name="firstname" class="form-control" placeholder="first name" required/>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label> 
+                <input type="text" name="lastname" class="form-control" placeholder="last name" required/>
+            </div>
+            <div class="form-group">
+                <label>Phone</label> 
+                <input type="tel" name="phone" class="form-control" placeholder="phone" required/>
+            </div>                
+            <div class="form-group">
+                <label>Email address</label> 
+                <input type="email" name="email" id="emailId" class="form-control" placeholder="Email address" required/>
+                <div id="emailmsg"></div>
+            </div>
+            <div style="width: 80%" class="form-group">
+                <label class="col-2 col-form-label">Password</label> 
+                <input type="password" name="password" id="pwd" class="form-control " placeholder="Password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})" required/>
+            </div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            <input type="submit" value="Save user" name="Register" class="btn btn-primary"/>
+        </form>
+    </div>
 </div>

@@ -11,20 +11,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Users</title>
     </head>
-    <body>
-        <div id="usersDiv" align="center">
-            <div style="width: 100%" valign="top">
+    <body>        
+        <div class="container" id="usersDiv" align="center">
+            <div class="row" valign="top">
                 ${message}
-                <button onclick="ajaxSubmitData('/addNewUser', 'usersDiv', null, 'GET');" class="btn btn-info" style="height: 40px;width: 100px;float: left;margin-left: 100px">Add Service</button>                                
+                <button onclick="callAjaxRequest('/addNewUser', 'usersDiv', 'GET', null);" class="btn btn-info" style="height: 40px;width: 100px;float: left;margin-left: 100px">Add Service</button>                                
             </div>
-            <div style="width: 100%" valign="top">
+                <div align="left" class="row" style="width: 100%; margin-right: 40%">                
                 <c:choose>
                     <c:when test="${empty users}">
                         <span class="alert alert-info">No users registered yet</span>
                     </c:when>
                     <c:otherwise>     
-                        <div style="max-height: 200px;" class="table-responsive">
-                            <table width="100%" cellpadding="0" cellspacing="0" border="0" id="table" class="table">
+                        <div style="max-height: 200px;width: 80%" class="table-responsive">
+                            <table style="width: 100%;" cellpadding="0" cellspacing="0" border="0" id="table" class="table">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -58,12 +58,12 @@
                                                 ${user.roles}
                                             </td>
                                             <td style="width: 20%;text-align: center">
-                                                <a href="#" id="editUser" onclick="callAjaxRequest('/updateUser', 'usersDiv', {id: ${user.userId}}, 'GET');" 
+                                                <a href="#" id="editUser" onclick="alert('under implemetation...'); return;callAjaxRequest('updateUser', 'usersDiv', 'GET', {id: ${user.userId}});" 
                                                    style="color: blueviolet;font-size: 1.2em;" class="glyphicon glyphicon-edit">
                                                 </a>
                                                 &nbsp;
-                                                <a href="#" id="deleteUser" onclick=" if (confirm('Delete User ${user.firstName} ${user.lastName}')){
-                                        callAjaxRequest('/deleteUser', 'usersDiv', {id: ${user.userId}}, 'GET'); 
+                                                <a href="#" id="deleteUser" onclick="alert('under implemetation...'); return; if (confirm('Delete User ${user.firstName} ${user.lastName}')){
+                                        callAjaxRequest('deleteUser', 'usersDiv', 'GET', {id: ${user.userId}}); 
                                                         }" style="color: blueviolet;font-size: 1.2em;" class="glyphicon glyphicon-trash">
                                                 </a>
                                             </td>
