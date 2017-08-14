@@ -15,12 +15,16 @@
         <div class="container" id="usersDiv" align="center">
             <div class="row" valign="top">
                 ${message}
-                <button onclick="callAjaxRequest('/addNewUser', 'usersDiv', 'GET', null);" class="btn btn-info" style="height: 40px;width: 100px;float: left;margin-left: 100px">Add Service</button>                                
+                <button onclick="callAjaxRequest('/addNewUser', 'usersDiv', 'GET', null);" class="btn btn-info" style="height: 40px;width: 100px;float: left;margin-left: 100px">Add User</button>                                
             </div>
-                <div align="left" class="row" style="width: 100%; margin-right: 40%">                
+            <div align="left" class="row" style="width: 100%; margin-right: 40%">                
                 <c:choose>
                     <c:when test="${empty users}">
-                        <span class="alert alert-info">No users registered yet</span>
+                        <br/>
+                        <br/>
+                        <div style="width: 80%" class="table-responsive">
+                            <span class="alert alert-info">No users registered yet</span>
+                        </div>
                     </c:when>
                     <c:otherwise>     
                         <div style="max-height: 200px;width: 80%" class="table-responsive">
@@ -62,8 +66,8 @@
                                                    style="color: blueviolet;font-size: 1.2em;" class="glyphicon glyphicon-edit">
                                                 </a>
                                                 &nbsp;
-                                                <a href="#" id="deleteUser" onclick="alert('under implemetation...'); return; if (confirm('Delete User ${user.firstName} ${user.lastName}')){
-                                        callAjaxRequest('deleteUser', 'usersDiv', 'GET', {id: ${user.userId}}); 
+                                                <a href="#" id="deleteUser" onclick="alert('under implemetation...'); return; if (confirm('Delete User ${user.firstName} ${user.lastName}')) {
+                                                            callAjaxRequest('deleteUser', 'usersDiv', 'GET', {id: ${user.userId}});
                                                         }" style="color: blueviolet;font-size: 1.2em;" class="glyphicon glyphicon-trash">
                                                 </a>
                                             </td>
