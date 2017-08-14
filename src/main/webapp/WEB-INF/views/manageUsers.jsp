@@ -15,7 +15,7 @@
         <div class="container" id="usersDiv" align="center">
             <div class="row" valign="top">
                 ${message}
-                <button onclick="callAjaxRequest('/addNewUser', 'usersDiv', 'GET', null);" class="btn btn-info" style="height: 40px;width: 100px;float: left;margin-left: 100px">Add User</button>                                
+                <button onclick="callAjaxRequest('/addNewUser', 'usersDiv', 'GET', null);" class="btn btn-info" style="height: 40px;width: 100px;float: left;margin-left: 100px">Add new user</button>                                
             </div>
             <div align="left" class="row" style="width: 100%; margin-right: 40%">                
                 <c:choose>
