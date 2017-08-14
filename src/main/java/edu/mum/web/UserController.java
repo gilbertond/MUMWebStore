@@ -98,7 +98,7 @@ public class UserController {
         crudRepositoryService.save(userDetail);
         redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details, please sign in to continue</span>");
         
-        return "redirect:manageUsers";
+        return "redirect:addNewUser";
     }
     
     @RequestMapping(value = "/updateUser")

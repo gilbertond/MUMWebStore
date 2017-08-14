@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 function callAjaxRequest(Url, returnDiv, method, data) {
-    
+    alert(Url);
     $.ajax({
         url: Url,
         type: method,

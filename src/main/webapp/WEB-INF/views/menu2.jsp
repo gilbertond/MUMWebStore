@@ -202,7 +202,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
         <div class="col-sm-9 col-md-9">
             <div class="well">
                 <h1>Control Panel</h1>
-                Admin Dashboard
+                Administrator Dashboard
             </div>
             <div id="contectDiv" class="row">
                 
