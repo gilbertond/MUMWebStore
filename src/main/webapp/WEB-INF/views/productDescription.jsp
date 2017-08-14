@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <p>${product.productName }</p>
-    <label><img class="image" src="images/${product.image }"
+    <label><img class="image" src="static/images/${product.image}"
                 alt="#">
         <p>${product.description }</p>
         <p>Price: $${product.cost }</p>

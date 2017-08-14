@@ -49,6 +49,13 @@ public class UserController {
         return "/signup";
     }
     
+    @RequestMapping(value = "/deleteAccount")
+    public String deleteAccount(Principal principal){
+        UserDetail detail = crudRepositoryService.findByEmail(principal.getName());
+        crudRepositoryService.delete(detail);
+        return "/logout";
+    }
+    
     @RequestMapping(value = "/manageUsers")
     public String manageUsers(Model model){
         

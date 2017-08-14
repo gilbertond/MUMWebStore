@@ -146,7 +146,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                                 <tr>
                                     <td>
                                         <span class="glyphicon glyphicon-trash text-danger"></span>
-                                        <a href="#" class="text-danger">
+                                        <a href="deleteAccount" href="#" class="text-danger">
                                             Delete Account
                                         </a>
                                     </td>

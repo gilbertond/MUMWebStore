@@ -107,7 +107,7 @@
             <label><a class="productdescription" id="${product.productId }"
                 href='<c:url value="/productDescriptionForm?id=${product.productId}"/>'>
                      <img
-                    class="image" src='/images/${product.image }'
+                    class="image" src='/static/images/${product.image}'
                     alt="${product.productName }"><br/> ${product.productName}
                 <br/> $ ${product.cost}</a></label>
         </c:forEach>
