@@ -86,7 +86,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/userSave", method = RequestMethod.POST)
-    public String userSave(HttpServletRequest request, @ModelAttribute("userdetail") UserDetail userDetailx, final RedirectAttributes redirectAttributes){
+    public String userSave(HttpServletRequest request, final RedirectAttributes redirectAttributes){
         System.out.println("Posting.......");
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         UserDetail userDetail = new UserDetail(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"),
