@@ -1,0 +1,11 @@
+#loginForm{
+    width:500px;
+    border:2px solid #b6c3d4;
+    border-radius: 10px;
+    margin:auto;
+    padding:20px;
+}
+
+#container h1,h2{
+    text-align: center;
+}

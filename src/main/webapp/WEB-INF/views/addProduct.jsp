@@ -5,6 +5,7 @@
   Time: 12:17 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,16 +33,19 @@
 <body>
 <%--style="width: 55%; margin: auto; border: 3px solid rgb(0, 191, 255); padding: 20px"--%>
 <div id="container">
-    <form action="#" method="post">
+    <form action="/addProduct" method="post" enctype="multipart/form-data">
         <div class="form-group required">
-            <label class="control-label col-md-4 " style="margin: auto"> Add Product </label>
+            <label class="control-label col-md-4 " style="margin: auto" > Add Product </label>
         </div>
         <div class="form-group required">
-            <label class="control-label col-md-4  requiredField">Catagory
+            <label class="control-label col-md-4  requiredField">Category
             </label>
             <div class="controls col-md-8 ">
-                <input class="input-md  textinput textInput form-control"
-                       name="catagory" placeholder="Catagory" type="text"/>
+                <select name="catagoryId">
+                    <c:forEach var="catagory" items="${catagories}">
+                        <option value="${catagory.categoryId}">${catagory.categoryName}</option>
+                    </c:forEach>
+                </select>
             </div>
         </div>
 
@@ -49,7 +53,7 @@
             <label class="control-label col-md-4  requiredField"> Name </label>
             <div class="controls col-md-8 ">
                 <input class="input-md  textinput textInput form-control"
-                       name="name" placeholder="Name" type="text"/>
+                       name="productName" placeholder="Name" type="text"/>
             </div>
         </div>
         <div class="form-group required">
@@ -65,7 +69,7 @@
             </label>
             <div class="controls col-md-8 ">
                 <input class="input-md  textinput textInput form-control"
-                       name="quantity" placeholder="Quantity" type="text"/>
+                       name="quantityAvailable" placeholder="Quantity" type="text"/>
             </div>
         </div>
         <div class="form-group required">
@@ -73,7 +77,7 @@
                 Product Description </label>
             <div class="controls col-md-8 ">
 					<textarea class="input-md  textinput textInput form-control"
-                              name="productdescription"></textarea>
+                              name="description"></textarea>
             </div>
         </div>
         <div class="container">
@@ -81,11 +85,8 @@
                 <div class="form-group">
                     <label>Upload Image</label>
                     <div class="form-group">
-                        <input type="file" id="imgInp"
-                               class="form-control btn btn-default"> <input
-                            type="hidden" name="imageName" value="default.jpg">
-                        <div id="upload" style="display: none;">Uploading..</div>
-                        <div id="message"></div>
+                        <input type="file" id="imgInp" name="imageName"
+                               class="form-control btn btn-default">
                     </div>
                 </div>
             </div>
@@ -96,6 +97,11 @@
             <button type="submit" class="btn btn-primary">Add Product</button>
         </div>
 
+    </form>
+    <form action="<c:url value='/productPage' />" method="post">
+        <div class="buttons">
+            <button type="submit" class="btn btn-primary">Home</button>
+        </div>
     </form>
 
 </div>

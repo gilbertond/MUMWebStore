@@ -30,6 +30,12 @@ public class OrderItems implements Serializable {
         this.quantity = quantity;
     }
 
+    public OrderItems(OrderEntity order, Product product, Integer quantity) {
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public Long getOrderItemId() {
         return orderItemId;
     }
@@ -98,6 +104,6 @@ public class OrderItems implements Serializable {
 
     @Override
     public String toString() {
-        return "OrderItems{" + "order=" + order.getOrderNumber() + ", product=" + product + ", quantity=" + quantity + '}';
+        return "OrderItems{" + "order=" + order.getOrderId() + ", product=" + product + ", quantity=" + quantity + '}';
     }
 }

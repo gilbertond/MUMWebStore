@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.mum.web;
+package edu.mum.controller;
 
 import edu.mum.domain.Address;
 import edu.mum.domain.Role;
@@ -38,7 +38,7 @@ public class UserController {
         }
         UserDetail userDetail = crudRepositoryService.findByEmail(principal.getName());
         if (userDetail!=null && userDetail.getRoles().contains(Role.ROLE_CLIENT)) {
-            return "/catagory";
+            return "/index";
         }
         return "/menu2";
     }
@@ -86,8 +86,15 @@ public class UserController {
     }
     
     @RequestMapping(value = "/userSave", method = RequestMethod.POST)
-    public String userSave(HttpServletRequest request, final RedirectAttributes redirectAttributes){
+    public String userSave(HttpServletRequest request, final RedirectAttributes redirectAttributes, Principal principal){
         System.out.println("Posting.......");
+        
+        UserDetail u = crudRepositoryService.findByEmail(principal.getName());
+        if(u != null){
+            redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">User with email already exists</span>");
+            return "addNewUser";
+        }
+        
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         UserDetail userDetail = new UserDetail(request.getParameter("firstname"), request.getParameter("lastname"), request.getParameter("email"),
                 encoder.encode(request.getParameter("password")), Boolean.TRUE);
@@ -98,7 +105,7 @@ public class UserController {
         crudRepositoryService.save(userDetail);
         redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details, please sign in to continue</span>");
         
-        return "redirect:addNewUser";
+        return "redirect:manageUsers";
     }
     
     @RequestMapping(value = "/updateUser")

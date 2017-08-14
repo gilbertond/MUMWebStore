@@ -22,7 +22,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
     .panel-body table tr td { padding-left: 15px }
     .panel-body .table {margin-bottom: 0px; }
 </style>
-<script src="resources/js/ourAjax.js" type="text/javascript"></script>
+<script src="static/js/ourAjax.js" type="text/javascript"></script>
 <div class="container">
     <div class="row">
         <div style="width: 99%" class="panel panel-primary">

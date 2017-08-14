@@ -1,0 +1,24 @@
+@CHARSET "ISO-8859-1";
+
+#paragraph {
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}
+
+#container {
+    padding: 10px;
+    background-color: #4f6faf;
+}
+
+.product {
+    margin-left: 10px;
+}
+
+.image {
+    max-height: 200px;
+    width: 300px;
+}
+.productdescription{
+    text-align: center;
+}

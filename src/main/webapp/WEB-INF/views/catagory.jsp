@@ -5,6 +5,7 @@
   Time: 12:06 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,24 +33,31 @@
 <body>
 
 <div id="container">
-    <form action="#" method="post">
+    <form action="/addCatagory" method="post">
         <div class="form-group required">
             <label class="control-label col-md-4  requiredField">Product Catagory
             </label>
-            <div class="btn-group">
-                <a class="btn dropdown-toggle btn-select" data-toggle="dropdown" href="#">Select a Country <span
-                        class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Foot wear</a></li>
-                    <li><a href="#">Clothings</a></li>
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">Books</a></li>
-                    <li><a href="#">Beverages</a></li>
-                </ul>
+            <div class="controls col-md-8 ">
+                <input class="input-md  textinput textInput form-control"
+                       name="categoryName" placeholder="Name" type="text"/>
             </div>
         </div>
+        <div class="form-group required">
+            <label class="control-label col-md-4  requiredField">
+                Description </label>
+            <div class="controls col-md-8 ">
+					<textarea class="input-md  textinput textInput form-control"
+                              name="description"></textarea>
+            </div>
+        </div>
+
         <div class="buttons">
             <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </form>
+    <form action="<c:url value='/productPage' /> " method="post">
+        <div class="buttons" style="padding: 10px">
+            <button type="submit" class="btn btn-primary">Home</button>
         </div>
     </form>
 </div>

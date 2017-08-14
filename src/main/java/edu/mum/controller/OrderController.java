@@ -56,7 +56,7 @@ public class OrderController {
         shippingAddress.setUserDetail(userDetail);
         OrderStatus orderStatus = OrderStatus.NEW;
         List<OrderItems> orderItems = (List<OrderItems>) session.getAttribute("cart");
-        OrderEntity orderEntity=new OrderEntity(date, "", userDetail,shippingAddress,orderStatus,orderItems);
+        OrderEntity orderEntity=new OrderEntity(date, userDetail, shippingAddress, orderStatus);//(date, userDetail,shippingAddress,orderStatus,orderItems);
         orderService.checkOut(orderEntity);
         session.removeAttribute("cart");
         return "successPage";

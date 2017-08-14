@@ -14,9 +14,9 @@
     <div align="left" class="row" style="width: 100%; margin-right: 40%">
         <div align="left" style="width: 80%" class="">
             <h1>Register new user</h1>
-            <form id="signup-form" id="saveForm">
+            <form id="saveForm">
                 <div style="width: 60%" class="form-group">
-                    <label>First Name</label> 
+                    <label>First Name..</label> 
                     <input type="text" name="firstname" class="form-control" placeholder="first name" required/>
                 </div>
                 <div style="width: 60%" class="form-group">
@@ -37,7 +37,8 @@
                     <input type="password" name="password" id="pwd" class="form-control " placeholder="Password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,})" required/>
                 </div>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                <input onclick="callAjaxRequest('/userSave', 'contectDiv', 'POST', $('#saveForm').serialize());" type="button" value="Save user" name="Register" class="btn btn-primary"/>
+                <button style="float: left" id="submitButton" type="button" class="btn btn-primary" 
+                                    onclick="callAjaxRequest('userSave', 'contectDiv', 'POST', $('#saveForm').serialize());">SAVE USER</button>
             </form>
         </div>
     </div>
