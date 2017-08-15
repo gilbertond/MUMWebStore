@@ -90,7 +90,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     </div>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMINISTRATOR')">
-                    <div style="display: none" class="panel panel-default">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th">
@@ -102,12 +102,10 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                                 <table class="table">
                                     <tr>
                                         <td>
-                                            <a href="#">Shipments</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#">Tex</a>
+                                            <span class="glyphicon glyphicon-briefcase"></span>
+                                            <a onclick="callAjaxRequest('manageScheduleTasks.htm', 'contectDiv', 'GET', {ref: false});" href="#">
+                                                Services
+                                            </a>
                                         </td>
                                     </tr>
                                 </table>
@@ -139,6 +137,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                                 <sec:authorize access="hasRole('ROLE_ADMINISTRATOR') and hasRole('ROLE_USER') and hasRole('ROLE_ROOT')">
                                     <tr>
                                         <td>
+                                            <span class="glyphicon glyphicon-user"></span>
                                             <a onclick="callAjaxRequest('manageUsers', 'contectDiv', 'GET', {})" href="#">User management</a>
                                         </td>
                                     </tr>

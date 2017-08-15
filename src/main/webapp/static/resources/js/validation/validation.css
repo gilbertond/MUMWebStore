@@ -1,0 +1,17 @@
+.form-control{
+    margin-left:.5em;float:left;
+}
+.form-control,label{
+    float:left;
+}
+br{clear:both;}
+input{
+    border:1px solid black;margin-bottom:.5em;
+}
+input.error{border:1px solid red;}
+label.error{
+    background:url('images/unchecked.png') no-repeat;padding-left:16px;margin-left:.3em;color: red;
+}
+label.valid{
+    background:url('images/checked.png') no-repeat;display:block;width:16px;height:16px;
+}

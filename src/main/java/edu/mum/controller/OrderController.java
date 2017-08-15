@@ -1,7 +1,7 @@
 package edu.mum.controller;
 
 import edu.mum.domain.*;
-import edu.mum.service.IUserCrudRepositoryService;
+import edu.mum.dao.IUserCrudRepositoryService;
 import edu.mum.service.OrderService;
 import edu.mum.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

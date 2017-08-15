@@ -7,7 +7,7 @@ package edu.mum.authentication;
 
 import edu.mum.domain.Role;
 import edu.mum.domain.UserDetail;
-import edu.mum.service.IUserCrudRepositoryService;
+import edu.mum.dao.IUserCrudRepositoryService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
