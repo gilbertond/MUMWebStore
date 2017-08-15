@@ -58,6 +58,9 @@ public class SystementryController {
     @RequestMapping(value = "/manageScheduleTasks")
     public ModelAndView manageScheduleTasks(HttpServletRequest request, @RequestParam("ref") Boolean ref, Principal principal) {
         Map<String, Object> model = new HashMap<String, Object>();
+        if(principal == null){
+            model.put("redir", true);
+        }
         try {
             List<Object[]> services = (List<Object[]>) serviceLayer.fetchRecord(Services.class,
                     new String[]{"serviceid", "servicename", "status", "description", "lastruntime", "datecreated", "startondemand",

@@ -5,10 +5,10 @@
  */
 package edu.mum.controller;
 
-import edu.mum.domain.Address;
 import edu.mum.domain.Role;
 import edu.mum.domain.UserDetail;
 import edu.mum.dao.IUserCrudRepositoryService;
+import edu.mum.service.ServiceLayer;
 import java.security.Principal;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +34,9 @@ public class UserController {
 
     @Autowired
     IUserCrudRepositoryService crudRepositoryService;
+    
+    @Autowired
+    ServiceLayer serviceLayer;
     
     @RequestMapping(value = "/user")
     public String getLogin(Principal principal){
@@ -73,6 +76,12 @@ public class UserController {
         
         model.addAttribute("users", userdetails);
         return "/manageUsers";
+    }
+    
+    @RequestMapping(value = "/changePassword")
+    public String changePassword(Model model){
+        
+        return "/passwordForm";
     }
     
     @RequestMapping(value = "/signupSave", method = RequestMethod.POST)
@@ -121,6 +130,30 @@ public class UserController {
         userDetail.addRole(Role.ROLE_USER);
         userDetail.addRole(Role.ROLE_ADMINISTRATOR);
         crudRepositoryService.save(userDetail);
+        redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details, please sign in to continue</span>");
+        
+        return "redirect:manageUsers";
+    }
+    
+    @RequestMapping(value = "/updateAccount", method = RequestMethod.POST)
+    public String updateAccount(HttpServletRequest request, final RedirectAttributes redirectAttributes, Principal principal){
+        
+        UserDetail u = crudRepositoryService.findByEmail(request.getParameter("email"));
+        if(u != null){
+            redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">User with email already exists</span>");
+            return "redirect:changePassword";
+        }
+        if(principal.getName().startsWith("root")){
+            redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Root account cannot be changed</span>");
+            return "redirect:manageUsers";
+        }
+        
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        
+        UserDetail user = crudRepositoryService.findByEmail(principal.getName());
+        serviceLayer.updateRecord(UserDetail.class, new String[]{"email", "password"}, new Object[]{request.getParameter("email"), 
+            encoder.encode(request.getParameter("password"))}, "user_id", user.getUserId().intValue());
+        
         redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details, please sign in to continue</span>");
         
         return "redirect:manageUsers";
