@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>         
+        <title>Jobs</title>         
         <script>
             var myVar;    
             function chekstatus(){
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <fieldset style="width: 95%;min-height: 100px" class="FieldsetContainer">
+            <fieldset style="width: 100%;min-height: 100px" class="FieldsetContainer">
                 <legend class="H5">Available Services</legend>                
                 <form id="schedulerListForm" method="post">
                     <div id="schedulerTaskList" align="center">
@@ -148,10 +148,10 @@
                                         <tbody>
                                             <c:forEach items="${model.services}" varStatus="status" var="service">
                                                 <tr style="">
-                                                    <td style="width: 15%"> 
+                                                    <td style="width: 20%"> 
                                                         <div id="saveDiv${status.count}"></div>
                                                         <c:if test="${service[6]}">                                                    
-                                                            <span class="alert alert-info">   
+                                                            <span style="height: 30px" class="alert alert-info">   
                                                                 <input <c:if test="${service[2]==true && service[14]!=true}">disabled="disabled" checked=""</c:if> onclick="if ($(this).prop('checked')) {
                                                                 if (confirm('Start this service?')) {
                                                                     stopFunction();callAjaxRequest('runManualService.htm', 'saveDiv${status.count}', {id: ${service[0]}, bean: '${service[13]}', 'GET', name: '${service[1]}'});
