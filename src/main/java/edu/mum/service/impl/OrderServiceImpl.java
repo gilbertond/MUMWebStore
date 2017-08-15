@@ -1,10 +1,17 @@
 package edu.mum.service.impl;
 
+<<<<<<< HEAD
 import edu.mum.dao.AddressRepository;
 import edu.mum.dao.ProductRepository;
 import edu.mum.domain.*;
 import edu.mum.dao.OrderRepository;
 import edu.mum.service.AddressService;
+=======
+import edu.mum.dao.OrderRepository;
+import edu.mum.dao.ProductRepository;
+import edu.mum.domain.OrderEntity;
+import edu.mum.domain.OrderItems;
+>>>>>>> ee661deadcf19e0464bbaf3eb9f6f693dc10d837
 import edu.mum.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

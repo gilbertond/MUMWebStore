@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function callAjaxRequest(Url, returnDiv, method, data) {
-    alert(Url);
+function callAjaxRequest(Url, returnDiv, method, data) {    
     $.ajax({
         url: Url,
         type: method,

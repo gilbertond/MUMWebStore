@@ -8,12 +8,16 @@ package edu.mum.controller;
 import edu.mum.domain.Address;
 import edu.mum.domain.Role;
 import edu.mum.domain.UserDetail;
-import edu.mum.service.IUserCrudRepositoryService;
+import edu.mum.dao.IUserCrudRepositoryService;
 import java.security.Principal;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,6 +51,19 @@ public class UserController {
     @RequestMapping(value = "/signup")
     public String getSignup(){
         return "/signup";
+    }
+    
+    @RequestMapping(value = "/deleteAccount")
+    public String deleteAccount(HttpServletRequest request, HttpServletResponse response, Principal principal){
+        UserDetail detail = crudRepositoryService.findByEmail(principal.getName());
+        crudRepositoryService.delete(detail);
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        
+        return "redirect:login";
     }
     
     @RequestMapping(value = "/manageUsers")

@@ -1,11 +1,18 @@
 package edu.mum.controller;
 
+<<<<<<< HEAD
 import edu.mum.domain.Address;
 import edu.mum.domain.OrderItems;
 import edu.mum.domain.OrderStatus;
 import edu.mum.domain.UserDetail;
 import edu.mum.service.OrderService;
 import edu.mum.service.UserService;
+=======
+import edu.mum.domain.*;
+import edu.mum.dao.IUserCrudRepositoryService;
+import edu.mum.service.OrderService;
+import edu.mum.service.ProductService;
+>>>>>>> ee661deadcf19e0464bbaf3eb9f6f693dc10d837
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +34,13 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
     @Autowired
+<<<<<<< HEAD
     private UserService userService;
+=======
+    private IUserCrudRepositoryService userService;
+    @Autowired
+    private ProductService productService;
+>>>>>>> ee661deadcf19e0464bbaf3eb9f6f693dc10d837
 
     @RequestMapping("/getCartPage")
     public String cartPage() {
@@ -69,9 +82,13 @@ public class OrderController {
         shippingAddress.setUserDetail(userDetail);
         OrderStatus orderStatus = OrderStatus.NEW;
         List<OrderItems> orderItems = (List<OrderItems>) session.getAttribute("cart");
+<<<<<<< HEAD
         orderService.checkOut(date, userDetail, shippingAddress, orderStatus, orderItems);
+=======
+        OrderEntity orderEntity=new OrderEntity(date, userDetail, shippingAddress, orderStatus,orderItems);//(date, userDetail,shippingAddress,orderStatus,orderItems);
+        orderService.checkOut(orderEntity);
+>>>>>>> ee661deadcf19e0464bbaf3eb9f6f693dc10d837
         session.removeAttribute("cart");
         return "redirect:/index";
     }
-
 }

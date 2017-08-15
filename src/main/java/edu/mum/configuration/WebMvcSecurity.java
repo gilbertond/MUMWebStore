@@ -45,8 +45,11 @@ public class WebMvcSecurity extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
+                    .antMatchers("/signup").access("hasRole('ROLE_ANONYMOUS')")
+                    .antMatchers("/signupSave").access("hasRole('ROLE_ANONYMOUS')")
+                    .antMatchers("/index/*").access("hasRole('ROLE_CLIENT')")
                     .antMatchers("/user/").access("hasRole('ROLE_USER')")
-                    .antMatchers("/*").hasRole("USER")
+                    .antMatchers("/*").hasRole("USER")                    
                     .anyRequest().permitAll()
                     .and()
                     .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/user")
