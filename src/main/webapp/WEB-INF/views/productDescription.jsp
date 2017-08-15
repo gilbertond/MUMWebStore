@@ -17,7 +17,8 @@
         <p>${product.description }</p>
         <p>Price: $${product.cost }</p>
         <p>Quantity: ${product.quantityAvailable }</p></label> <br/> <br/>
-    <form action='<c:url value="#"/>' method="post">
+    <form action='<c:url value="/addToCart"/>' method="post">
+        <input type="number" placeholder="Enter Quantity" name="qty"/>
         <input type="hidden" value="${product.productId}" name="productId">
         <button type="submit" value="submit">Add to cart</button>
     </form>
