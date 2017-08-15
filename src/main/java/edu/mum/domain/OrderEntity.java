@@ -33,24 +33,13 @@ public class OrderEntity implements Serializable {
         this.orderItems = new ArrayList<>();
     }
 
-<<<<<<< HEAD
-    public OrderEntity(Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus, List<OrderItems> orderItems) {
-        // this.orderNumber = orderNumber;
-=======
-    public OrderEntity(Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus,List<OrderItems> orderItems) {
-       // this.orderNumber = orderNumber;
->>>>>>> ee661deadcf19e0464bbaf3eb9f6f693dc10d837
+    public OrderEntity(Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus, List<OrderItems> orderItems) {        
         this.dateCreated = dateCreated;
         this.userDetail = userDetail;
         this.shippingAddress = shippingAddress;
         this.orderItems = new ArrayList<>();
-<<<<<<< HEAD
         this.orderStatus = orderStatus;
         this.orderItems = orderItems;
-=======
-       this.orderStatus = orderStatus;
-       this.orderItems=orderItems;
->>>>>>> ee661deadcf19e0464bbaf3eb9f6f693dc10d837
     }
 
     public Long getOrderId() {
@@ -60,14 +49,6 @@ public class OrderEntity implements Serializable {
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
-
-//    public String getOrderNumber() {
-//        return orderNumber;
-//    }
-//
-//    public void setOrderNumber(String orderNumber) {
-//        this.orderNumber = orderNumber;
-//    }
 
     public Date getDateCreated() {
         return (Date) dateCreated.clone();
