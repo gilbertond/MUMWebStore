@@ -32,6 +32,9 @@
             <td>
                 <form action="<c:url value='/delete' />" method="post">
                     <div class="buttons">
+                        <input type="hidden" name="id" value="${items.product.productId}"/>
+                        <input type="hidden" name="qty" value="${items.quantity}"/>
+
                         <button type="submit">Delete</button>
                     </div>
                 </form>
@@ -43,5 +46,7 @@
 </table>
 
 </table>
+<a href="<c:url value='/getAddress'/>">CheckOut product</a>
+<a href="<c:url value='/index'/>">Continue Shopping</a>
 </body>
 </html>
