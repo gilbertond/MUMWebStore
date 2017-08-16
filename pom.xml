@@ -95,11 +95,8 @@
             <artifactId>cron-utils</artifactId>
             <version>5.0.0</version>
         </dependency>
-<<<<<<< HEAD
 
         <!--dependency for email service-->
-=======
->>>>>>> 2afdfece0ac36d760795ef96705d9337b138dfc1
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
