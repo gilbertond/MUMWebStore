@@ -1,16 +1,12 @@
 package edu.mum.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 
 /**
  * Created by Hatake on 8/11/2017.
@@ -21,18 +17,25 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addressId;
+    @NotEmpty(message = "Street field empty")
     @Column(name = "street")
     private String street;
+    @NotEmpty(message = "City field empty")
     @Column(name = "city")
     private String city;
+    @NotEmpty(message = "State field empty")
     @Column(name = "stateUS")
     private String stateUS;
+    @NotEmpty(message = "Country field empty")
     @Column(name = "country")
     private String country;
+    @NotEmpty(message = "ZipCode field empty")
+    @Pattern(regexp = "/^\\d{5,}$/", message = "At least 5 digits needed")
     @Column(name = "zipCode")
     private String zipCode;
     @ManyToOne
     @JoinColumn(name = "userId")
+    @JsonBackReference
     private UserDetail userDetail;
 
     public Address() {

@@ -39,4 +39,9 @@ public class OrderServiceImpl implements OrderService {
         OrderEntity orderEntity = new OrderEntity(date, userDetail, shippingAddress, orderStatus,orderItems);
         orderRepository.save(orderEntity);
     }
+
+    @Override
+    public List<OrderEntity> getOrderEntities() {
+        return (List<OrderEntity>)orderRepository.findAll();
+    }
 }

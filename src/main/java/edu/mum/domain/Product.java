@@ -1,5 +1,7 @@
 package edu.mum.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import javax.persistence.*;
@@ -19,6 +21,7 @@ public class Product implements Serializable{
     private String productName;
     @ManyToOne
     @JoinColumn(name = "categoryId")
+    @JsonManagedReference
     private ProductCategory category;
 
 //    @Override

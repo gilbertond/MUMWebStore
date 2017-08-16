@@ -17,13 +17,13 @@
         <p>${product.description }</p>
         <p>Price: $${product.cost }</p>
         <p>Quantity: ${product.quantityAvailable }</p></label> <br/> <br/>
-<<<<<<< HEAD
+
     <form action='<c:url value="/addToCart"/>' method="post">
         <input type="number" placeholder="Enter Quantity" name="qty"/>
         <input type="hidden" value="${product.productId}" name="productId">
-=======
+
     <form action='<c:url value="/addToCart/${product.productId}"/>' method="post">
->>>>>>> ee661deadcf19e0464bbaf3eb9f6f693dc10d837
+
         <button type="submit" value="submit">Add to cart</button>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>

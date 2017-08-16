@@ -1,18 +1,20 @@
 package edu.mum.controller;
 
-import edu.mum.dao.IUserCrudRepositoryService;
 import edu.mum.domain.Address;
 import edu.mum.domain.OrderItems;
 import edu.mum.domain.OrderStatus;
 import edu.mum.domain.UserDetail;
 import edu.mum.service.OrderService;
+import edu.mum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,7 +29,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
     @Autowired
-    private IUserCrudRepositoryService userService;
+    private UserService userService;
 
     @RequestMapping("/getCartPage")
     public String cartPage() {
@@ -62,20 +64,19 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
-    public String checkout(@ModelAttribute Address shippingAddress, Principal principal, HttpSession session) {
-        Date date = new Date();
-        // UserDetail userDetail = userService.findByEmail(principal.getName());
-        UserDetail userDetail = userService.findByEmail(principal.getName());
-        shippingAddress.setUserDetail(userDetail);
-        OrderStatus orderStatus = OrderStatus.NEW;
-        List<OrderItems> orderItems = (List<OrderItems>) session.getAttribute("cart");
-//<<<<<<< HEAD
-        orderService.checkOut(date, userDetail, shippingAddress, orderStatus, orderItems);
-//=======
-//        OrderEntity orderEntity=new OrderEntity(date, userDetail, shippingAddress, orderStatus,orderItems);//(date, userDetail,shippingAddress,orderStatus,orderItems);
-//        orderService.checkOut(orderEntity);
-//>>>>>>> ee661deadcf19e0464bbaf3eb9f6f693dc10d837
-        session.removeAttribute("cart");
-        return "redirect:/index";
+    public String checkout(@Valid @ModelAttribute("shippingAddress") Address shippingAddress, Principal principal, HttpSession session, BindingResult result) {
+
+        if (!result.hasErrors()) {
+            Date date = new Date();
+            UserDetail userDetail = userService.findByEmail(principal.getName());
+            shippingAddress.setUserDetail(userDetail);
+            OrderStatus orderStatus = OrderStatus.NEW;
+            List<OrderItems> orderItems = (List<OrderItems>) session.getAttribute("cart");
+            orderService.checkOut(date, userDetail, shippingAddress, orderStatus, orderItems);
+            session.removeAttribute("cart");
+            return "redirect:/index";
+        }
+        return "/shippinAddress";
+
     }
 }

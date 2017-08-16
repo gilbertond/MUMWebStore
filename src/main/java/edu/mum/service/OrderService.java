@@ -11,4 +11,5 @@ import java.util.List;
 public interface OrderService {
     public OrderItems setOrderItem(Long id, int qty);
     public void checkOut(Date date, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus,List<OrderItems> orderItems);
+    public List<OrderEntity> getOrderEntities();
 }
