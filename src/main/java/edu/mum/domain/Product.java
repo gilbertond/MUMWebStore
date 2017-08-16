@@ -3,12 +3,14 @@ package edu.mum.domain;
 import java.io.Serializable;
 import java.util.Arrays;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by Hatake on 8/11/2017.
  */
 @Entity
 @Table(name = "product")
+@XmlRootElement
 public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

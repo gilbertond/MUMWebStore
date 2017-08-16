@@ -54,7 +54,7 @@ public class UserController {
             return "redirect:login";
         }
         UserDetail userDetail = crudRepositoryService.findByEmail(principal.getName());
-        if (userDetail!=null && userDetail.getRoles().contains(Role.ROLE_CLIENT)) {
+        if (userDetail!=null && !userDetail.getIsStaff()) {
             System.out.println("************************************");
             return "redirect:index";
         }
@@ -146,7 +146,7 @@ public class UserController {
         StringBuilder body = new StringBuilder();
         body.append("<html><body>");
         body.append("<h3>Date sent: ").append(dateFormat.format(new Date())).append("</h3>");
-        body.append("<font color=\"blue\">-------------------------Credentials for MUM Web Store------------------------------------</font>");
+        body.append("<font color=\"blue\">-------------------------Credentials for MUM Web Store------------------------------------</font><br/>");
         body.append("You have been registered an ADMIN for the MUM WebStore App, below are your credentials which you can change once logged in");
         body.append("<ol>");
         body.append("<li><b>Username:</b>").append(userDetail.getEmail()).append("</li>");

@@ -5,6 +5,10 @@
  */
 package edu.mum.aop;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -22,19 +26,29 @@ import org.springframework.stereotype.Component;
 public class AopLogger {
     private static final Logger LOG = Logger.getLogger(AopLogger.class.getName());
     
-    @Before("execution(public boolean edu.mum.service.TopCostlyReportGenerator.run())")
+    @Before("execution(public void edu.mum.service.TopCostlyReportGenerator.run())")
     public void logServiceStart(){
         System.out.println("**********************************************************\n\n");
         LOG.info("A report to generate product report has been started by a background job...");
         System.out.println("\n\n");
     }
     
-//    @Around("execution(public * edu.mum.service.ServiceLayerImpl.fetchRecord(..))")
+//    @Around("execution(public * edu.mum.controller.UserController.userSave(HttpServletRequest, RedirectAttributes, Principal) && args(request, redirectAttributes, principal)")
+//    public void aroundAdvice(ProceedingJoinPoint joinPoint, HttpServletRequest request, RedirectAttributes redirectAttributes, Principal principal) throws Throwable{
+//        System.out.println("\n\n");
+//        LOG.info("Before Round: Detected new user creation...");
+//        joinPoint.proceed();
+//        LOG.info("After Round: A report to generate product report has been started by a background job...");
+//        System.out.println("\n\n");
+//    }
+    
+    @Around("execution(public void edu.mum.service.TopCostlyReportGenerator.run())")
     public void aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable{
         System.out.println("\n\n");
-        LOG.info("Before: A report to generate product report has been started by a background job...");
+        DateFormat format = new SimpleDateFormat("MMM dd, YYYY h:mm:ss a");
+        LOG.log(Level.INFO, "Before: A report to generate product report has been started by a background job...{0}", format.format(new Date()));
         joinPoint.proceed();
-        LOG.info("After: A report to generate product report has been started by a background job...");
+        LOG.log(Level.INFO, "After: A report to generate product report has been started by a background job...{0}", format.format(new Date()));
         System.out.println("\n\n");
     }
 }
