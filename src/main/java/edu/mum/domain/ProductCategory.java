@@ -110,9 +110,4 @@ public class ProductCategory implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "ProductCategory{" + "categoryId=" + categoryId + ", categoryName=" + categoryName + ", description=" + description + ", products=" + products.size() + '}';
-    }
 }

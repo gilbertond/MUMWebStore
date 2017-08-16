@@ -63,8 +63,13 @@ public class ProductController {
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String addCatagory(Product product, Long catagoryId, MultipartFile imageName) throws IOException {
+<<<<<<< HEAD
         product.setCategory(catagoryService.findOne(catagoryId));
         String fileName = "";
+=======
+
+        String fileName = ""; product.setCategory(catagoryService.findOne(catagoryId));
+>>>>>>> niroj
         if(imageName != null) {
             byte[] bytes = imageName.getBytes();
             fileName = imageName.getOriginalFilename();
@@ -74,7 +79,11 @@ public class ProductController {
             fos.close();
         }
         product.setImage(fileName);
+<<<<<<< HEAD
         System.out.println("hello");
+=======
+        System.out.println(fileName);
+>>>>>>> niroj
         productService.updatProduct(product);
         return "redirect:/addProductForm";
     }

@@ -53,7 +53,11 @@
             <label class="control-label col-md-4  requiredField"> Name </label>
             <div class="controls col-md-8 ">
                 <input class="input-md  textinput textInput form-control"
+<<<<<<< HEAD
                        name="productName" placeholder="Name" type="text"/>
+=======
+                       name="productName" placeholder="Name" type="text" required />
+>>>>>>> niroj
             </div>
         </div>
         <div class="form-group required">
@@ -61,7 +65,7 @@
             </label>
             <div class="controls col-md-8 ">
                 <input class="input-md  textinput textInput form-control"
-                       name="cost" placeholder="Cost" type="text"/>
+                       name="cost" placeholder="Cost" type="text" required />
             </div>
         </div>
         <div class="form-group required">
@@ -69,7 +73,11 @@
             </label>
             <div class="controls col-md-8 ">
                 <input class="input-md  textinput textInput form-control"
+<<<<<<< HEAD
                        name="quantityAvailable" placeholder="Quantity" type="text"/>
+=======
+                       name="quantityAvailable" placeholder="Quantity" type="text" required />
+>>>>>>> niroj
             </div>
         </div>
         <div class="form-group required">
@@ -77,7 +85,11 @@
                 Product Description </label>
             <div class="controls col-md-8 ">
 					<textarea class="input-md  textinput textInput form-control"
+<<<<<<< HEAD
                               name="description"></textarea>
+=======
+                              name="description" required></textarea>
+>>>>>>> niroj
             </div>
         </div>
         <div class="container">
@@ -86,7 +98,11 @@
                     <label>Upload Image</label>
                     <div class="form-group">
                         <input type="file" id="imgInp" name="imageName"
+<<<<<<< HEAD
                                class="form-control btn btn-default">
+=======
+                               class="form-control btn btn-default" required>
+>>>>>>> niroj
                     </div>
                 </div>
             </div>

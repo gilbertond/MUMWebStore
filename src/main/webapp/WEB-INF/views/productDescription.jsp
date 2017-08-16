@@ -12,11 +12,16 @@
 <body>
 <div class="container">
     <p>${product.productName }</p>
+<<<<<<< HEAD
     <label><img class="image" src="static/images/${product.image}"
+=======
+    <label><img class="image" src="images/${product.image }"
+>>>>>>> niroj
                 alt="#">
         <p>${product.description }</p>
         <p>Price: $${product.cost }</p>
         <p>Quantity: ${product.quantityAvailable }</p></label> <br/> <br/>
+<<<<<<< HEAD
 
     <form action='<c:url value="/addToCart"/>' method="post">
         <input type="number" placeholder="Enter Quantity" name="qty"/>
@@ -30,6 +35,15 @@
     <form action="<c:url value='/productPage' />" method="post">
         <div class="buttons">
             <button type="submit">Back</button>
+=======
+    <form action='<c:url value="#"/>' method="post">
+        <input type="hidden" value="${product.productId}" name="productId">
+        <button type="submit" value="submit">Add to cart</button>
+    </form>
+    <form action="<c:url value='/productPage' />" method="post">
+        <div class="buttons">
+            <button type="submit">Home</button>
+>>>>>>> niroj
         </div>
     </form>
 </div>
