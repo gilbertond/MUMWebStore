@@ -114,16 +114,14 @@ public class DaoLayerImpl implements DaoLayer {
             transaction.begin();
             String hql = "UPDATE " + entity.getSimpleName() + " SET " + where
                     + " WHERE " + pk + "=:" + pk + "";
-
-            Query query = entityManager.createQuery(hql);
+            
+            Query query = entityManager.createNativeQuery(hql);
 
             //Set field parameters
             query.setParameter(pk, pkid);
             for (int i = 0; i < fields.length; i++) {
                 query.setParameter(fields[i], fieldValues[i]);
             }
-
-            System.out.println("###############" + hql);
 
             int updateCount = query.executeUpdate();
         } catch (Exception e) {

@@ -70,6 +70,11 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-amqp -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
@@ -90,8 +95,11 @@
             <artifactId>cron-utils</artifactId>
             <version>5.0.0</version>
         </dependency>
+<<<<<<< HEAD
 
         <!--dependency for email service-->
+=======
+>>>>>>> 2afdfece0ac36d760795ef96705d9337b138dfc1
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>

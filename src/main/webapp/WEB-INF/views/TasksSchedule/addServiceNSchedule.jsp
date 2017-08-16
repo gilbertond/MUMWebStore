@@ -88,40 +88,19 @@
         <script type="text/javascript">
             $(document).ready(function (){
                 $(".scrollClass").height(520);
-                $(".web_dialog").width(1000);
+                $(".web_dialog").width(1200);
                 $(".web_dialog").height(600);
                 $(".modal-content").height(600);
                 
-                //popup(0,0);
                 $(function () {
                     //generate();
                     $("#cron").cronGen();
                 });
 
-                ShowDialog(false);
-                $("#btnShowSimple").click(function (e)
-                {
-                    //alert(99999);
-                    ShowDialog(false);
-                    e.preventDefault();
-                });
-
-                $("#btnShowModal").click(function (e)
-                {
-                    ShowDialog(true);
-                    e.preventDefault();
-                });
+                ShowDialog(false);               
 
                 $("#btnClose").click(function (e)
                 {
-                    HideDialog();
-                    e.preventDefault();
-                });
-
-                $("#btnSubmit").click(function (e)
-                {
-                    var brand = $("#patientinfo input:input:checked").val();//$("#brands input:radio:checked").val();
-                    $("#output").html("<b>You have decided to worn on Patient: </b>" + brand);//$("#output").html("<b>Your favorite mobile brand: </b>" + brand);
                     HideDialog();
                     e.preventDefault();
                 });

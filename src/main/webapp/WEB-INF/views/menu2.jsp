@@ -125,7 +125,10 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <a href="#">Change Password</a>
+                                        <span class="glyphicon glyphicon-pencil text-info"></span>
+                                        <a onclick="if(!confirm('Change password?')){return;};callAjaxRequest('/changePassword', 'contectDiv', 'GET', {})" href="#">
+                                            Change credentials
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr style="display: none">

@@ -32,6 +32,10 @@
                     stopFunction();
                 });
             });
+            <c:if test="${model.redir}">
+                alert(90);
+                window.location = "/";
+            </c:if>
         </script>
     </head>
     <body>
@@ -163,7 +167,7 @@
                                                             </span>
                                                         </c:if>
                                                         <c:if test="${service[7]}">
-                                                            <span class="alert alert-info">
+                                                            <span style="height: 30px" class="alert alert-info">  
                                                                 <input checked="checked" disabled="disabled" onclick="if ($(this).prop('checked')) {
                                                                     if (confirm('Start this service?')) {
                                                                         callAjaxRequest('runManualService.htm', 'saveDiv${status.count}', 'GET', {id: ${service[0]}, bean: '${service[13]}', name: '${service[1]}'});
