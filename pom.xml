@@ -90,6 +90,12 @@
             <artifactId>cron-utils</artifactId>
             <version>5.0.0</version>
         </dependency>
+
+        <!--dependency for email service-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

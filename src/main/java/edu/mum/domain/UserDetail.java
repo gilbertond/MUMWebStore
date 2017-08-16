@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Email;
 
 /**
@@ -31,7 +34,8 @@ public class UserDetail implements Serializable {
     private String phone;
     @Column(name = "active")
     private Boolean active;
-    @OneToMany(mappedBy = "userDetail", cascade = CascadeType.ALL)    
+    @OneToMany(mappedBy = "userDetail", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Address> addresses = new ArrayList<>();
     @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "userrole")

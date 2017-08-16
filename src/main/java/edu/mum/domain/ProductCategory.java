@@ -1,5 +1,7 @@
 package edu.mum.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class ProductCategory implements Serializable {
     @Column(name = "description")
     private String description;
     @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
+    @JsonBackReference
     private List<Product> products;
 
     public ProductCategory() {
