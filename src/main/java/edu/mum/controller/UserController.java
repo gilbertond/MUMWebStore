@@ -8,9 +8,16 @@ package edu.mum.controller;
 import edu.mum.domain.Role;
 import edu.mum.domain.UserDetail;
 import edu.mum.dao.IUserCrudRepositoryService;
+import edu.mum.mail.SendMailService;
 import edu.mum.service.ServiceLayer;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.mail.Address;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +44,9 @@ public class UserController {
     
     @Autowired
     ServiceLayer serviceLayer;
+    
+    @Autowired
+    SendMailService sendMailService;
     
     @RequestMapping(value = "/user")
     public String getLogin(Principal principal){
@@ -113,13 +123,13 @@ public class UserController {
     }
     
     @RequestMapping(value = "/userSave", method = RequestMethod.POST)
-    public String userSave(HttpServletRequest request, final RedirectAttributes redirectAttributes, Principal principal){
+    public String userSave(HttpServletRequest request, final RedirectAttributes redirectAttributes, Principal principal) throws AddressException{
         System.out.println("Posting.......");
         
-        UserDetail u = crudRepositoryService.findByEmail(principal.getName());
+        UserDetail u = crudRepositoryService.findByEmail(request.getParameter("email"));
         if(u != null){
             redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">User with email already exists</span>");
-            return "addNewUser";
+            return "redirect:addNewUser";
         }
         
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -132,6 +142,26 @@ public class UserController {
         crudRepositoryService.save(userDetail);
         redirectAttributes.addFlashAttribute("message", "<span class=\"alert alert-info\">Saved details, please sign in to continue</span>");
         
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, YYYY hh:mm:ss a");
+        StringBuilder body = new StringBuilder();
+        body.append("<html><body>");
+        body.append("<h3>Date sent: ").append(dateFormat.format(new Date())).append("</h3>");
+        body.append("<font color=\"blue\">-------------------------Credentials for MUM Web Store------------------------------------</font>");
+        body.append("You have been registered an ADMIN for the MUM WebStore App, below are your credentials which you can change once logged in");
+        body.append("<ol>");
+        body.append("<li><b>Username:</b>").append(userDetail.getEmail()).append("</li>");
+        body.append("<li><b>Password:</b>").append(request.getParameter("password")).append("</li>");
+        body.append("<li><b>Roles:</b>").append(userDetail.getRoles()).append("</li>");
+        body.append("<ol>");
+        body.append("</ol></body></html>");
+        
+        List<Address> recipients = new ArrayList<>();
+        List<Address> cc = new ArrayList<>();
+        
+        recipients.add(new InternetAddress(userDetail.getEmail()));
+        sendMailService.sendMailFormatted(recipients, "ryumugil@gmail.com", 
+                
+                "Hello, "+userDetail.getFirstName() + " " +userDetail.getLastName(), cc, body.toString());
         return "redirect:manageUsers";
     }
     

@@ -120,7 +120,6 @@ public class DaoLayerImpl implements DaoLayer {
             //Set field parameters
             query.setParameter(pk, pkid);
             for (int i = 0; i < fields.length; i++) {
-                System.out.println(fields[i]+"||||||||||||||||||||||||||||"+fieldValues[i]);
                 query.setParameter(fields[i], fieldValues[i]);
             }
 

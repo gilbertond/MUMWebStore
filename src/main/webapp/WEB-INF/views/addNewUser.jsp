@@ -16,7 +16,7 @@
             <h1>Register new user</h1>
             <form id="saveForm">
                 <div style="width: 60%" class="form-group">
-                    <label>First Name..</label> 
+                    <label>First Name</label> 
                     <input type="text" name="firstname" class="form-control" placeholder="first name" required/>
                 </div>
                 <div style="width: 60%" class="form-group">
@@ -39,6 +39,7 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                 <button style="float: left" id="submitButton" type="button" class="btn btn-primary" 
                                     onclick="callAjaxRequest('userSave', 'contectDiv', 'POST', $('#saveForm').serialize());">SAVE USER</button>
+                ${message}
             </form>
         </div>
     </div>
