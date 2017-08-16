@@ -39,7 +39,7 @@
             </label>
             <div class="controls col-md-8 ">
                 <input class="input-md  textinput textInput form-control"
-                       name="categoryName" placeholder="Name" type="text"/>
+                       name="categoryName" placeholder="Name" type="text" required/>
             </div>
         </div>
         <div class="form-group required">
@@ -47,7 +47,7 @@
                 Description </label>
             <div class="controls col-md-8 ">
 					<textarea class="input-md  textinput textInput form-control"
-                              name="description"></textarea>
+                              name="description" required ></textarea>
             </div>
         </div>
 
