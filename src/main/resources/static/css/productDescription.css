@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+*{
+	margin:0;
+	padding:0;
+}
+
+.container{
+	border: 3px solid gray;
+	width: 25%;
+	margin:auto;
+}
+
+.image {
+	max-height: 400px;
+	width: 300px;
+}

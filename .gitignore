@@ -47,3 +47,4 @@ src/main/webapp/WEB-INF/views/TasksSchedule/tasksList.jsp
 src/main/java/edu/mum/controller/SystementryController.java
 src/main/java/edu/mum/configuration/EmailUtility.java
 src/main/java/edu/mum/aop/AopLogger.java
+src/main/resources/application.properties

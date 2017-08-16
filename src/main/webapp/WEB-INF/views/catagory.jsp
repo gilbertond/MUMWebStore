@@ -39,7 +39,11 @@
             </label>
             <div class="controls col-md-8 ">
                 <input class="input-md  textinput textInput form-control"
+<<<<<<< HEAD
                        name="categoryName" placeholder="Name" type="text"/>
+=======
+                       name="categoryName" placeholder="Name" type="text" required/>
+>>>>>>> niroj
             </div>
         </div>
         <div class="form-group required">
@@ -47,7 +51,11 @@
                 Description </label>
             <div class="controls col-md-8 ">
 					<textarea class="input-md  textinput textInput form-control"
+<<<<<<< HEAD
                               name="description"></textarea>
+=======
+                              name="description" required ></textarea>
+>>>>>>> niroj
             </div>
         </div>
 

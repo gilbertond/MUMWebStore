@@ -15,7 +15,11 @@ public class OrderEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
+<<<<<<< HEAD
     //    @Column(name = "orderNumber")
+=======
+//    @Column(name = "orderNumber")
+>>>>>>> niroj
 //    private String orderNumber;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
@@ -26,7 +30,11 @@ public class OrderEntity implements Serializable {
     @JoinColumn(name = "addressId")
     private Address shippingAddress;
     @OneToMany(cascade = CascadeType.PERSIST)
+<<<<<<< HEAD
     @JoinColumn(name = "orderId")
+=======
+    @JoinColumn(name="orderId")
+>>>>>>> niroj
     private List<OrderItems> orderItems;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
@@ -35,7 +43,12 @@ public class OrderEntity implements Serializable {
         this.orderItems = new ArrayList<>();
     }
 
+<<<<<<< HEAD
     public OrderEntity(Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus, List<OrderItems> orderItems) {        
+=======
+    public OrderEntity(Date dateCreated, UserDetail userDetail, Address shippingAddress, OrderStatus orderStatus) {
+       // this.orderNumber = orderNumber;
+>>>>>>> niroj
         this.dateCreated = dateCreated;
         this.userDetail = userDetail;
         this.shippingAddress = shippingAddress;
@@ -52,6 +65,17 @@ public class OrderEntity implements Serializable {
         this.orderId = orderId;
     }
 
+<<<<<<< HEAD
+=======
+//    public String getOrderNumber() {
+//        return orderNumber;
+//    }
+//
+//    public void setOrderNumber(String orderNumber) {
+//        this.orderNumber = orderNumber;
+//    }
+
+>>>>>>> niroj
     public Date getDateCreated() {
         return (Date) dateCreated.clone();
     }
@@ -100,7 +124,11 @@ public class OrderEntity implements Serializable {
     public int hashCode() {
         int hash = 17;
         hash = 31 * hash + Objects.hashCode(this.orderId);
+<<<<<<< HEAD
         // hash = 31 * hash + Objects.hashCode(this.orderNumber);
+=======
+       // hash = 31 * hash + Objects.hashCode(this.orderNumber);
+>>>>>>> niroj
         hash = 31 * hash + Objects.hashCode(this.dateCreated);
         hash = 31 * hash + Objects.hashCode(this.userDetail);
         return hash;
